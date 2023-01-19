@@ -1,8 +1,11 @@
 ---
-layout: default
+layout: home
 title: Home
-nav_order: 1
 ---
+
+#layout: default
+#title: Home
+#nav_order: 1
 
 # B-Tails
 

@@ -1,13 +1,11 @@
 title: B-Tails
 description: Your secure computer and encrypted USB memory drive anywhere
 theme: just-the-docs
-remote_theme: pmarsceill/just-the-docs
-search_enabled: true
+# remote_theme: pmarsceill/just-the-docs
+# search_enabled: true
 
 url: https://dutu.github.io/b-tails
 
 aux_links:
-  "Issues / Knowledge Base":
-    - "https://github.com/dutu/b-tails/issues"
-  "Contribute! Source on GitHub":
-    - "https://github.com/dutu/b-tails/"
+  Issues / Knowledge Base": https://github.com/dutu/b-tails/issues
+  Contribute! Source on GitHub: https://github.com/dutu/b-tails/
