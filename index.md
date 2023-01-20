@@ -1,11 +1,8 @@
 ---
-layout: home
+layout: default
 title: Home
+nav_order: 1
 ---
-
-#layout: default
-#title: Home
-#nav_order: 1
 
 # B-Tails
 
@@ -21,7 +18,7 @@ Build your own bootable USB memory stick that will help you
 
 With this guide you can setup a bootable USB memory stick, building everything from scratch and doing everything yourself.
 
-There are a few reasons why you want to have a **B-Tails** USB memory stick.
+There are a few reasons why you want to have a B-Tails USB memory stick.
 
 ### Your encrypted USB memory stick
 * Save your data on encrypted drive
@@ -29,10 +26,10 @@ There are a few reasons why you want to have a **B-Tails** USB memory stick.
 
 ### Your secure computer anywhere
 
-Start any computer on your **B-Tails** USB stick instead of starting on Windows, macOS, or Linux.
+Start any computer on your B-Tails USB stick instead of starting on Windows, macOS, or Linux.
 You can temporarily turn your own computer into a secure machine. You can also stay safe while using the computer of somebody else.
 
-Once you booted the computer from the **B-Tails** USB stick you can:
+Once you booted the computer from the B-Tails USB stick you can:
 * Access your encrypted data and store data encrypted on the USB drive
 * Browse the web securely and avoiding surveillance
 * Chat on Signal
@@ -42,3 +39,6 @@ Once you booted the computer from the **B-Tails** USB stick you can:
 ## B-Tails overview
 
 This guide explains how to setup your USB memory drive to use it as a bootable USB drive and as an encrypted drive to store securely your personal data.
+
+---
+Get started: [Tails >>](guide/tails.md)
