@@ -6,7 +6,7 @@ gem "jekyll", "~> 4.3" # installed by `gem jekyll`
 gem "just-the-docs", "0.4.0.rc4" # currently the latest pre-release
 # gem "just-the-docs"            # the latest release - currently 0.3.3
 
-# gem "webrick", "~> 1.7"
+gem "webrick", "~> 1.7"
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
 # uncomment the line below. To upgrade, run `bundle update github-pages`.
@@ -28,4 +28,4 @@ gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
 
 # Lock `http_parser.rb` gem to `v0.6.x` on JRuby builds since newer versions of the gem
 # do not have a Java counterpart.
-# gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
+gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
