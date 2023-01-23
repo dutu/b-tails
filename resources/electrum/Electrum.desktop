@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name=Electrum
+Name=Electrum Bitcoin Wallet
 GenericName=Electrum
 Comment=The latest version of Electrum Bitcoin Wallet.
-Exec=bash /live/persistence/TailsData_unlocked/electrum/electrum.sh
+Exec=bash /live/persistence/TailsData_unlocked/electrum/start_electrum.sh
 Terminal=false
 Type=Application
 Icon=/live/persistence/TailsData_unlocked/electrum/electrum_logo.png
