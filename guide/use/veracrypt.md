@@ -35,4 +35,8 @@ Unlock VeraCrypt partition after booting on Tail:
 
 ### On another computer
 
-* Unlock VeraCrypt partition on another computer 
+* Unlock VeraCrypt partition on another computer
+  
+
+Coming soon
+  {: .label .label-yellow }

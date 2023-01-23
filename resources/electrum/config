@@ -1,5 +1,5 @@
 {
-    "auto_connect": true,
+    "auto_connect": false,
     "check_updates": false,
     "config_version": 3,
     "decimal_point": 8,

@@ -2,9 +2,9 @@
 Name=Electrum
 GenericName=Electrum
 Comment=The latest version of Electrum Bitcoin Wallet.
-Exec=/home/amnesia/Persistent/Electrum/electrum.sh
+Exec=bash /live/persistence/TailsData_unlocked/electrum/electrum.sh
 Terminal=false
 Type=Application
-Icon=/home/amnesia/Persistent/Electrum/electrum_logo.png
+Icon=/live/persistence/TailsData_unlocked/electrum/electrum_logo.png
 Categories=Internet;
 
