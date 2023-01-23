@@ -1,22 +1,17 @@
 ---
 layout: page
 title: VeraCrypt
-parent: Encrypted partitions
-nav_order: 1
+parent: Partitions
+grand_parent: Install & Configure
+nav_order: 2
 ---
 
-# VeraCrypt
-
-## Overview
-
-## Preparation
+## VeraCrypt
 
 ### Install VeraCrypt
 
-* Boot to Tails and set admin password{: .fw-700 }
-
 * Mount the `VeraCrypt` partition:
-  * Click **Applications**, **Utilities**, then **Disks**
+  * Click **Applications ▸ Utilities ▸ Disks**
   * select the USB flash drive, click **VeraCrypt Partition 3**, click **>** button (Mount selected partition)
   * Close **Disks** application
 
@@ -24,7 +19,7 @@ nav_order: 1
 * Establish network connection using ethernet cable or Wi-Fi and wait for Tor to be ready
 
 
-* Import VeraCrypt PGP Public Key
+* Import VeraCrypt PGP Public Key:
   ```shell
   $ torsocks curl https://www.idrix.fr/VeraCrypt/VeraCrypt_PGP_public_key.asc | gpg --import
   ```
@@ -41,16 +36,16 @@ nav_order: 1
 
 * Download VeraCrypt release:
   * Click **Applications**, then **Tor Browser**
-  * Go to https://www.veracrypt.fr/en/Downloads.html 
+  * Go to [https://www.veracrypt.fr/en/Downloads.html](https://www.veracrypt.fr/en/Downloads.html){:target="_blank" rel="noopener"} 
   * Download latest release of **Linux Generic Installer** and associated **PGP signature**.
 
 
-* set VeraCrypt release environment variable
+* set VeraCrypt release environment variable:
   ```shell
   $ VERACRYPT_RELEASE_SEMVER=1.25.9
   ```
   
-* verify VeraCrypt release file
+* verify VeraCrypt release file:
   ```shell
   $ gpg --verify ~/Tor\ Browser/veracrypt-$VERACRYPT_RELEASE_SEMVER-setup.tar.bz2.sig
   ```
@@ -66,48 +61,48 @@ nav_order: 1
   > Primary key fingerprint: 5069 A233 D55A 0EEB 174A  5FC3 821A CD02 680D 16DE
   ```
 
-* extract VeraCrypt release
+* extract VeraCrypt release:
   ```shell
   $ cd ~/Tor\ Browser
   $ tar --extract --file ~/Tor\ Browser/veracrypt-$VERACRYPT_RELEASE_SEMVER-setup.tar.bz2 veracrypt-$VERACRYPT_RELEASE_SEMVER-setup-gui-x64
   ```
 
-* Run installer
-    
+* Run installer:
   ```shell
-    $ ./veracrypt-$VERACRYPT_RELEASE_SEMVER-setup-gui-x64
+  $ ./veracrypt-$VERACRYPT_RELEASE_SEMVER-setup-gui-x64
   ```
     
   * then click **Extract .tar Package File**, accept license terms, click **OK** and, finally, click **OK** (again)
   * Enter **2** to Select `2) Extract package file veracrypt_1.25.9_amd64.tar.gz and place it to /tmp`
   * Wait for the result
+  
   ```
   > Installation package 'veracrypt_1.25.9_amd64.tar.gz' extracted and placed in '/tmp'
   > Press Enter to exit... 
   ```
 
-* Extract VeraCrypt binary to `~/VeraCrypt`
+* Extract VeraCrypt binary to `~/VeraCrypt`:
   ```shell
   $ mkdir ~/VeraCrypt
   $ cd ~/VeraCrypt
   $ tar --extract --file /tmp/veracrypt_${VERACRYPT_RELEASE_SEMVER}_amd64.tar.gz --strip-components 2 usr/bin/veracrypt
   ```
 
-* Create `veracrypt.AppImage`
+* Create `veracrypt.AppImage`:
   ```shell
   $ echo -n "./veracrypt" > veracrypt.AppImage
   $ chmod +x veracrypt.AppImage
   ```
 
-## Encrypt VeraCrypt Partition
+### Encrypt VeraCrypt Partition
 
-* Launch VeraCrypt
+* Launch VeraCrypt:
   ```shell
   $ ~/VeraCrypt/veracrypt.AppImage
   ```
 
 * Encrypt Partition, in VeraCrypt application`:
-  * Click **Volumes**, **Create New Volume...**, select **Encrypt a non-system partition/drive**, click `Next`, Select `Standard VeraCrypt volume`, click `Next`.
+  * Click **Volumes ▸ Create New Volume...**, select **Encrypt a non-system partition/drive**, click **Next**, select **Standard VeraCrypt volume**, click **Next**.
   * Select the partition that is mounted as `/media/amnesia/VeraCrypt`, then click **OK**
   * Click **Next**, then click **OK** to encrypt the entire device/partition.
   * Enter admin password
@@ -120,15 +115,5 @@ nav_order: 1
   * Click **Exit** to exit the VeraCrypt Volume Creation Wizard.
   * Click **Exit** to exit the VeraCrypt
 
-
-## Usage
-
-VeraCrypt encrypted partition can be unlocked every time when Tail Os is started or can be unlocked on another computer.
-
-### On Tails OS
-
-* Unlock VeraCrypt partition after booting on Tail OS
-
-### On another computer
-
-* Unlock VeraCrypt partition on another computer 
+---
+Next:  [Tails Persistent Storage >>](partitions_tailspersistent.html)

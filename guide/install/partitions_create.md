@@ -1,26 +1,12 @@
 ---
 layout: page
-title: Partitioning
-nav_order: 3
+title: Create partitions
+parent: Partitions
+grand_parent: Install & Configure
+nav_order: 1
 ---
 
-# Partitioning
-
-## Overview
-
-We partition the USB memory stick to have the following structure:
-
-![](../images\disk_layout.png)
-
-1. **`Tails`** - partition where the Tail OS has been installed.
-2. **`README`** - 512MB exFAT partition. It will be an unencrypted partition that can be used to store insensitive data.
-3. **`VeraCrypt`** - 2GB exFAT partition. It will be encrypted with VeraCrypt. Should be used to store private files.
-4. Free space - it will be used for Tail OS Persistent Storage. Partition will be encrypted.
-
-{: .warning }
->The size of the Partitions 2-4 can be adjusted when created. Values above are proposed settings.
-
-## Create partitions
+## Create Partitions
 
 * Make sure Tails OS installation has been completed.
 
@@ -31,7 +17,7 @@ We partition the USB memory stick to have the following structure:
 * Set admin password:
   * Click **+** under **Additional Settings**
   * Click **Administration Password**
-  * enter password 
+  * enter password
   * click **Add**
 
 
@@ -40,8 +26,8 @@ We partition the USB memory stick to have the following structure:
 
 
 * Create the `README` partition:
-  * Click **Aplications**, **Utilities**, then **Disks**
-  * Select the USB flash drive 
+  * Choose **Applications ▸ Utilities ▸ Disks**
+  * Select the USB flash drive
   * Click **Free Space**, then **+**, set **Partition Size** to `512 MB`, click **Next**
   * Set **Volume Name** to `README`, select **Other**, click **Next**
   * Select **exFAT** and, finally, click **Create**
@@ -54,3 +40,4 @@ We partition the USB memory stick to have the following structure:
   * Close **Disks** application
 
 ---
+Next:  [VeraCrypt >>](partitions_veracrypt.html)
