@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Electrum
+GenericName=Electrum
+Comment=The latest version of Electrum Bitcoin Wallet.
+Exec=/home/amnesia/Persistent/Electrum/electrum.sh
+Terminal=false
+Type=Application
+Icon=/home/amnesia/Persistent/Electrum/electrum_logo.png
+Categories=Internet;
+

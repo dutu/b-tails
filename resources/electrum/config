@@ -1,0 +1,18 @@
+{
+    "auto_connect": true,
+    "check_updates": false,
+    "config_version": 3,
+    "decimal_point": 8,
+    "fee_level": 3,
+    "fiat_address": true,
+    "history_rates": true,
+    "is_maximized": false,
+    "oneserver": true,
+    "proxy": "socks5:localhost:9050",
+    "qt_gui_color_theme": "dark",
+    "server": "g4ishflgsssw5diuklqsgdb5ppsz5t2sxevysqtfpj27o5xnjbzit4qd.onion:50002:s",
+    "show_addresses_tab": true,
+    "show_channels_tab": true,
+    "use_exchange": "Kraken",
+    "use_exchange_rate": true
+}
