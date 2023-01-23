@@ -11,7 +11,7 @@ nav_order: 2
 ### Install VeraCrypt
 
 * Mount the `VeraCrypt` partition:
-  * Click **Applications ▸ Utilities ▸ Disks**
+  * Choose **Applications ▸ Utilities ▸ Disks**
   * select the USB flash drive, click **VeraCrypt Partition 3**, click **>** button (Mount selected partition)
   * Close **Disks** application
 
@@ -35,7 +35,7 @@ nav_order: 2
   ```
 
 * Download VeraCrypt release:
-  * Click **Applications**, then **Tor Browser**
+  * Choose **Applications ▸ Tor Browser**
   * Go to [https://www.veracrypt.fr/en/Downloads.html](https://www.veracrypt.fr/en/Downloads.html){:target="_blank" rel="noopener"} 
   * Download latest release of **Linux Generic Installer** and associated **PGP signature**.
 
@@ -101,7 +101,7 @@ nav_order: 2
   $ ~/VeraCrypt/veracrypt.AppImage
   ```
 
-* Encrypt Partition, in VeraCrypt application`:
+* Wait for VeraCrypt application, and proceed to Encrypt Partition:
   * Click **Volumes ▸ Create New Volume...**, select **Encrypt a non-system partition/drive**, click **Next**, select **Standard VeraCrypt volume**, click **Next**.
   * Select the partition that is mounted as `/media/amnesia/VeraCrypt`, then click **OK**
   * Click **Next**, then click **OK** to encrypt the entire device/partition.
