@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Signal
+title: Signal Desktop Messenger
 parent: Applications
 grand_parent: Install & Configure
 nav_order: 4
 ---
 
-# Signal
+# Signal Desktop Messenger
 
 ## Install Signal
 
