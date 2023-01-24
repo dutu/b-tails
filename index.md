@@ -6,11 +6,11 @@ nav_order: 1
 
 # What is B-Tails?
 
-Configure your USB memory stick that will give you:
- * Your encrypted USB memory stick
- * Your secure computer anywhere
-
 With this guide you can setup a bootable USB memory stick, building everything from scratch and doing everything yourself.
+
+Configure your USB memory stick that will give you:
+* Your encrypted USB memory stick
+* Your secure computer anywhere
 
 There are a few reasons why you want to have a B-Tails USB memory stick.
 
@@ -43,7 +43,7 @@ In addition, 3 partitions are created, two encrypted and one unencrypted, where 
 
 The data stored on these partitions can be accessed on a computer running any operating system, and, of course, when a computer is booted from the USB memory stick.
 
-Bootable USB memory drive uses Tails. To find out more goto [official Tails homepage](https://tails.boum.org){:target="_blank" rel="noopener"}. 
+Bootable USB memory drive uses Tails. To find out more about Tails, goto [official Tails homepage](https://tails.boum.org){:target="_blank" rel="noopener"}. 
 
 ---
 # B-Tails requirements
