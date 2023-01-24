@@ -1,6 +1,6 @@
 ---
 layout: default
-title: __________________________
+title: _________________
 nav_order: 2
 nav_exclude: true
 ---
