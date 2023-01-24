@@ -12,6 +12,8 @@ Configure your USB memory stick that will give you:
 * Your encrypted USB memory stick
 * Your secure computer anywhere
 
+The configuration is build on [Tails](https://tails.boum.org).
+
 There are a few reasons why you want to have a B-Tails USB memory stick.
 
 ---
