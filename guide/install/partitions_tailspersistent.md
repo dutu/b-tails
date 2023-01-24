@@ -22,16 +22,23 @@ nav_order: 3
 * Wait for the creation to finish
 
 
-* The list of features of the Persistent Storage appears.
-  
+* Wait for the list of features of the Persistent Storage to appear.
   Each feature corresponds to a set of files or settings that can be saved in the Persistent Storage.
 
-  At minimum, turn on the following features:
-    * Personal Data
-    * You can turn on more features later on according to your needs
+
+* Turn on the following features, at minimum:
+  - [x] Persistent Folder
+  - [x] Welcome Screen
+  - [x] Electrum Bitcoin Wallet
+  - [x] Additional Software
+  - [x] Dotfiles
+    > You can turn on more features later on according to your needs
 
 
 * Click **Save**
+
+
+* Close **Persistent Storage** window
 
 ---
 Next: [Applications >>](apps.html)
