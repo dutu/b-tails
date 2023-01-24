@@ -118,7 +118,7 @@ If a bitcoin wallet was previously used on this B-Tails USB memory stick, make s
   > `--forgetconfig` option is specified. It indicates that Electrum should not remember any configuration settings when launched again. If `--forgetconfig` is removed, any configuration changes are saved, including the name and path of the last wallet used. If this is a privacy concern, do not remove the parameter!    
 
 
-* Copy config files to Permanent storage:
+* Copy app and config files to Permanent storage:
   ```shell
   $ persistence_dir=/live/persistence/TailsData_unlocked
   $ rm -fr ${persistence_dir}/electrum/*
