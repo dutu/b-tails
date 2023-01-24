@@ -16,10 +16,14 @@ You can run the most recent version of Electrum with Tails by using the AppImage
 
 The instructions below can be used to add the latest Electrum version.
 
+{: .highlight }
+> Time required: ~30 minutes
+
+
 ## Backup your bitcoin wallet
 
 {: .warning }
-If a bitcoin wallet was previously used on this B-Tails USB memory stick, make sure it is backed-up safely and the wallet seed is stored securely.  
+If a bitcoin wallet was previously used on this B-Tails USB memory stick, make sure the wallet is backed-up safely and the wallet seed is stored securely.  
 
 * Write down your wallet seed words and store them securely off the computer
 
