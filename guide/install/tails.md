@@ -11,6 +11,10 @@ nav_order: 2
 
 We install [Tails](https://tails.boum.org){:target="_blank" rel="noopener"} on the USB memory stick, following installation instruction provided on Tails homepage.
 
+{: .highlight }
+> Time required: ~30 minutes
+
+
 * Install Tails by following [official **Install Tails** instruction](https://tails.boum.org/install/index.en.html){:target="_blank" rel="noopener"}.
 
 
