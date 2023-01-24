@@ -10,7 +10,7 @@ nav_order: 3
 
 ### Create the Persistent Storage
 
-* Choose **Application ▸ Tails ▸ Configure persistent volume**
+* Choose **Application ▸ Tails ▸ Persistent Storage**
 
 
 * Specify a passphrase of your choice in both the **Passphrase** and **Verify Passphrase** text boxes
