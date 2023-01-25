@@ -16,7 +16,7 @@ nav_order: 2
   * Close **Disks** application
 
 
-* Establish network connection using ethernet cable or Wi-Fi and wait for Tor to be ready
+* Establish network connection using ethernet cable or Wi-Fi and wait for Tor to be ready.
 
 
 * Import VeraCrypt PGP Public Key:
@@ -34,18 +34,19 @@ nav_order: 2
   > gpg:              unchanged: 1
   ```
 
+
 * Download VeraCrypt release:
   * Choose **Applications ▸ Tor Browser**
   * Go to [https://www.veracrypt.fr/en/Downloads.html](https://www.veracrypt.fr/en/Downloads.html){:target="_blank" rel="noopener"} 
   * Download latest release of **Linux Generic Installer** and associated **PGP signature**.
 
 
-* set VeraCrypt release environment variable:
+* Set VeraCrypt release environment variable:
   ```shell
   $ VERACRYPT_RELEASE_SEMVER=1.25.9
   ```
   
-* verify VeraCrypt release file:
+* Verify VeraCrypt release file:
   ```shell
   $ gpg --verify ~/Tor\ Browser/veracrypt-$VERACRYPT_RELEASE_SEMVER-setup.tar.bz2.sig
   ```
@@ -61,11 +62,13 @@ nav_order: 2
   > Primary key fingerprint: 5069 A233 D55A 0EEB 174A  5FC3 821A CD02 680D 16DE
   ```
 
-* extract VeraCrypt release:
+
+* Extract VeraCrypt release:
   ```shell
   $ cd ~/Tor\ Browser
   $ tar --extract --file ~/Tor\ Browser/veracrypt-$VERACRYPT_RELEASE_SEMVER-setup.tar.bz2 veracrypt-$VERACRYPT_RELEASE_SEMVER-setup-gui-x64
   ```
+
 
 * Run installer:
   ```shell
@@ -88,11 +91,13 @@ nav_order: 2
   $ tar --extract --file /tmp/veracrypt_${VERACRYPT_RELEASE_SEMVER}_amd64.tar.gz --strip-components 2 usr/bin/veracrypt
   ```
 
+
 * Create `veracrypt.AppImage`:
   ```shell
   $ echo -n "./veracrypt" > veracrypt.AppImage
   $ chmod +x veracrypt.AppImage
   ```
+
 
 ### Encrypt VeraCrypt Partition
 
@@ -114,6 +119,7 @@ nav_order: 2
   * Wait for the volume to be created, then click **OK**
   * Click **Exit** to exit the VeraCrypt Volume Creation Wizard.
   * Click **Exit** to exit the VeraCrypt
+
 
 ---
 Next:  [Tails Persistent Storage >>](partitions_tailspersistent.html)

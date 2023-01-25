@@ -27,14 +27,16 @@ We partition the USB memory stick to have the following structure:
 
 ---
 
+
 ### Partitioning overview
 
-`TAILS` partition has already been created. Follow this guide for next steps:
+* `TAILS` partition has already been created. Follow this guide for next steps:
 
 1. Create `README` partition
-2. Create 'VeraCrypt' partition
+2. Create `VeraCrypt` partition
 3. Install VeraCrypt software and encrypt `VeraCrypt` partition
 4. Create and encrypt `TailsData` partition on the remaining free space 
+
 
 ---
 

@@ -22,12 +22,11 @@ The instructions below can be used to add the latest Electrum version.
 
 ## Backup your bitcoin wallet
 
-{: .warning }
-If a bitcoin wallet was previously used on this B-Tails USB memory stick, make sure the wallet is backed-up safely and the wallet seed is stored securely.  
-
 * Write down your wallet seed words and store them securely off the computer
 
-* Backup your bitcoin wallet file from the B-Tails memory stick.
+  {: .warning }
+  Make sure your wallet seed is stored safely! Only continue when it is done!
+
 
 ## Install Electrum Bitcoin Wallet
 
@@ -51,6 +50,7 @@ If a bitcoin wallet was previously used on this B-Tails USB memory stick, make s
   $ gpg --import ThomasV.asc
   ```
 
+
 * Verify GPG signature of Electrum AppImage:
   ```shell
   $ electrumAppImageFile=$(find electrum*.AppImage | tail -n 1)
@@ -64,6 +64,7 @@ If a bitcoin wallet was previously used on this B-Tails USB memory stick, make s
   > Primary key fingerprint: 6694 D8DE 7BE8 EE56 31BE  D950 2BD5 824B 7F94 70E6
   ```
 
+
 * Download and extract Electrum config files:
   ```shell
   $ torsocks wget https://github.com/dutu/b-tails/raw/main/resources/electrum.zip
@@ -71,7 +72,8 @@ If a bitcoin wallet was previously used on this B-Tails USB memory stick, make s
   $ ls -ls electrum
   ```
 
-* Confirm/edit Electrum `config`
+
+* Confirm/edit Electrum `config`:
   ```shell
   $ nano electrum/config
   ```
@@ -135,17 +137,20 @@ If a bitcoin wallet was previously used on this B-Tails USB memory stick, make s
   $ cp electrum/electrum.desktop $persistence_dir/dotfiles/.local/share/applications
   ```
 
+
 * Set udev rules to support Ledger devices:
   ```shell
   $ torsocks wget https://github.com/LedgerHQ/udev-rules/raw/master/add_udev_rules.sh
   $ sudo bash add_udev_rules.sh
   ```
 
-* Restart Tails and unlock the Persistent Storage
+
+* Restart Tails and unlock the Persistent Storage.
 
 
-* You can now start the latest Electrum Bitcoin Wallet 
+* You can now start the latest Electrum Bitcoin Wallet. 
   * Choose **Applications ▸ Other ▸ Electrum Bitcoin Wallet**
 
+
 ---
-Next: [Tails Autostart >>](tails_autostart.html)
+Next: [Tails Utilities >>](tails_utilities.html)

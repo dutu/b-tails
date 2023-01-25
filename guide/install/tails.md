@@ -23,5 +23,6 @@ We install [Tails](https://tails.boum.org){:target="_blank" rel="noopener"} on t
 
   Once Tails installation is completed, return to this guide.
 
+
 ---
 Next: [Partitions >>](partitions.html) 

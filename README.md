@@ -40,6 +40,7 @@ You can temporarily turn the computer into a secure machine. You can also stay s
 * Leave no trace on the computer
 * Leave no trace on the Internet
 
+
 ---
 # B-Tails overview
 
@@ -51,8 +52,13 @@ The data stored on these partitions can be accessed on a computer running any op
 
 Bootable USB memory drive uses Tails. To find out more about Tails, goto [official Tails homepage](https://tails.boum.org). 
 
+
 ---
 # Changelog
+
+2023-01-25:
+* first release
+
 
 ---
 # References

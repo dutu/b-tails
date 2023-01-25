@@ -6,3 +6,8 @@ has_children: true
 ---
 
 # Update
+
+Here we explain how to update various components.
+
+Coming soon
+{: .label .label-yellow }

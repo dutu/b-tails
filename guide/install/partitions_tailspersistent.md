@@ -8,18 +8,19 @@ nav_order: 3
 
 ## Tails Persistent Storage
 
+
 ### Create the Persistent Storage
 
-* Choose **Application ▸ Tails ▸ Persistent Storage**
+* Choose **Application ▸ Tails ▸ Persistent Storage**.
 
 
-* Specify a passphrase of your choice in both the **Passphrase** and **Verify Passphrase** text boxes
+* Specify a passphrase of your choice in both the **Passphrase** and **Verify Passphrase** text boxes.
 
 
 * Click on the **Create** button
 
 
-* Wait for the creation to finish
+* Wait for the creation to finish.
 
 
 * Wait for the list of features of the Persistent Storage to appear.
@@ -35,10 +36,11 @@ nav_order: 3
     > You can turn on more features later on according to your needs
 
 
-* Click **Save**
+* Click **Save**.
 
 
-* Close **Persistent Storage** window
+* Close **Persistent Storage** window.
+
 
 ---
 Next: [Applications >>](apps.html)
