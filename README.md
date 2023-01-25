@@ -50,3 +50,15 @@ In addition, 3 partitions are created, two encrypted and one unencrypted, where 
 The data stored on these partitions can be accessed on a computer running any operating system, and, of course, when a computer is booted from the USB memory stick.
 
 Bootable USB memory drive uses Tails. To find out more about Tails, goto [official Tails homepage](https://tails.boum.org). 
+
+---
+# Changelog
+
+---
+# References
+
+1. Tails - https://tails.boum.org/
+2. How to install and use VeraCrypt on Tails - https://github.com/sunknudsen/privacy-guides/tree/master/how-to-install-and-use-veracrypt-on-tails
+3. Tails Autostart - https://gitlab.com/tstone2077/tails-autostart 
+4. Tails Overlay - https://gitlab.com/tstone2077/tails-overlay
+5. Installing and Running Signal on Tails - https://bisco.org/notes/installing-and-running-signal-on-tails/
