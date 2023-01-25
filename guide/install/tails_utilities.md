@@ -19,7 +19,7 @@ Some utility apps are installed, that comes in handy for other applications to w
 
 [Tails Autostart](https://github.com/dutu/tails-autostart){:target="_blank" rel="noopener"} is a utility script that automatically starts scripts/applications on Tails bootup.
 
-This is facilitates Signal application to work.
+This facilitates Signal application to work.
 
 ### Install Tails Autostart
 {: .no_toc }
@@ -31,7 +31,7 @@ This is facilitates Signal application to work.
   ```shell
   $ cd ~/Downloads
   $ mkdir -p /live/persistence/TailsData_unlocked/dotfiles/.config/autostart
-  $ torify git clone https://github.com/dutu/tails-autostart.git /live/persistence/TailsData_unlocked/dotfiles/.config/autostart
+  $ torsocks git clone https://github.com/dutu/tails-autostart.git /live/persistence/TailsData_unlocked/dotfiles/.config/autostart
   ```
 
 
