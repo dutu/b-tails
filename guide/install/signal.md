@@ -9,19 +9,20 @@ nav_order: 4
 # Signal Desktop Messenger
 
 {: .important }
-For privacy reasons, the application is setup so that the configuration is not persistent; it is cleared when Tails reboots. This means the Signal account would need every time when Signal is used after Tails reboot. It is also possible to configure a persistent configuration, but this is not described here.
+For privacy reasons, the application is setup so that the configuration is not persistent; it is cleared when Tails reboots. This means every time after a reboot you'd need to link Signal to your account. It is also possible to configure a persistent configuration, but this is not described here.
 
 
 ## Install Signal
 
 * Make sure **Tails Autostart** utility has been installed. See [Tails Utilities](tails_utilities.html#tails-autostart).
 
+
 * Install flatpak:
   ```shell
   $ sudo apt install flatpak
   ```
+    * Click **Install Every Time**, when Tails asks if you want to add flatpak to your additional software.
 
-    * Tails then asks if you want to add flatpak to your additional software, and you should do so.
 
 * Download and extract Signal config files:
   ```shell
@@ -31,11 +32,16 @@ For privacy reasons, the application is setup so that the configuration is not p
   $ ls -ls signal
   ```
 
-* Setup persistent directory for flatpak software packages and make it autostart on Tails startup 
+
+* Setup persistent directory for flatpak software packages and make it autostart on Tails startup: 
   ```shell
-  signal/setup-flatpak-persistent-apps.sh
-  cp signal/setup-flatpak-persistent-apps.sh /live/persistence/TailsData_unlocked/dotfiles/.config/autostart/amnesia.d
+  $ sudo mkdir -p $persistence_dir/flatpak
+  $ sudo chown -R amnesia:amnesia $persistence_dir/flatpak
+  $ chmod 700 $persistence_dir/flatpak 
+  $ signal/setup-flatpak-persistent-apps.sh
+  $ cp signal/setup-flatpak-persistent-apps.sh /live/persistence/TailsData_unlocked/dotfiles/.config/autostart/amnesia.d
   ```
+
 
 * Add a flatpak remote and install signal:
   ```shell
@@ -45,14 +51,24 @@ For privacy reasons, the application is setup so that the configuration is not p
   > This may take 30-45 minutes, depending on TOR connection speed
 
 
-* Add a Signal app icon on Gnome **Applications ▸ Other ▸ Signal**:
+* Add Signal app icon on Gnome **Applications ▸ Other ▸ Signal**:
   ```shell
   $ persistence_dir=/live/persistence/TailsData_unlocked
   $ mkdir -p $persistence_dir/dotfiles/.local/share/applications
   $ cp signal/signal.desktop $persistence_dir/dotfiles/.local/share/applications
-  $ mkdir -p $persistence_dir/signal
+  $ sudo mkdir -p $persistence_dir/signal
+  $ sudo chown -R amnesia:amnesia $persistence_dir/signal
+  $ chmod 700 $persistence_dir/signal 
   $ cp signal/start_signal.sh $persistence_dir/signal
   ```
   > The app icon will be visible after next Tails reboot
+
+
+* Restart Tails and unlock the Persistent Storage.
+
+
+* You can now start Signal: 
+  * Choose **Applications ▸ Other ▸ Signal**
+
 
 ---
