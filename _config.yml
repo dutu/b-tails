@@ -5,6 +5,17 @@ color_scheme: dark
 # remote_theme: pmarsceill/just-the-docs
 search_enabled: true
 markdown: kramdown
+
+# To disable support for mermaid diagrams (https://mermaid.js.org),
+# comment out the `mermaid` and `version` keys below
+# By default, consuming the theme as a gem leaves mermaid disabled; it is opt-in
+mermaid:
+  # Version of mermaid library
+  # Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/
+  version: "9.3.0"
+  # Put any additional configuration, such as setting the theme, in _includes/mermaid_config.js
+  # See also docs/ui-components/code
+
 callouts:
   highlight:
     color: yellow
