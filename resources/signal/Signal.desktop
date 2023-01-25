@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Signal
+GenericName=Signal Desktop Messenger
+Exec=/home/amnesia/Persistent/start_signal.sh
+Terminal=false
+Type=Application
+Icon=/home/amnesia/.local/share/flatpak/app/org.signal.Signal/current/active/files/share/icons/hicolor/128x128/apps/org.signal.Signal.png
