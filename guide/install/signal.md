@@ -21,7 +21,7 @@ For privacy reasons, the application is setup so that the configuration is not p
   ```shell
   $ sudo apt install flatpak
   ```
-    * Click **Install Every Time**, when Tails asks if you want to add flatpak to your additional software.
+    * Click **Install Every Time**, when Tails asks if you want to add flatpak to your additional software
 
 
 * Download and extract Signal config files:
@@ -35,6 +35,7 @@ For privacy reasons, the application is setup so that the configuration is not p
 
 * Setup persistent directory for flatpak software packages and make it autostart on Tails startup: 
   ```shell
+  $ persistence_dir=/live/persistence/TailsData_unlocked
   $ sudo mkdir -p $persistence_dir/flatpak
   $ sudo chown -R amnesia:amnesia $persistence_dir/flatpak
   $ chmod 700 $persistence_dir/flatpak 
@@ -53,7 +54,6 @@ For privacy reasons, the application is setup so that the configuration is not p
 
 * Add Signal app icon on Gnome **Applications ▸ Other ▸ Signal**:
   ```shell
-  $ persistence_dir=/live/persistence/TailsData_unlocked
   $ mkdir -p $persistence_dir/dotfiles/.local/share/applications
   $ cp signal/signal.desktop $persistence_dir/dotfiles/.local/share/applications
   $ sudo mkdir -p $persistence_dir/signal
