@@ -10,6 +10,9 @@ nav_order: 2
 
 ### Install VeraCrypt
 
+{: .note }
+Tails comes preinstalled with software to unlock VeraCrypt encrypted partition. However, to create and encrypt the partition, VeraCrypt software is needed. The VeraCrypt software is installed in RAM and disappears when you restart Tails.  
+
 * Mount the `VeraCrypt` partition:
   * Choose **Applications ▸ Utilities ▸ Disks**
   * select the USB flash drive, click **VeraCrypt Partition 3**, click **>** button (Mount selected partition)
