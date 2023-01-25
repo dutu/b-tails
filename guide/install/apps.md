@@ -16,7 +16,7 @@ These applications are ready-to-use and are configured with safe defaults.
 
 In addition, this guide provides instruction on how to install:
 * [Electrum Bitcoin Wallet](electrum.html)
-* [Tails Autostart](tails_autostart.html)
+* [Tails Utilities](tails_utilities.html)
 * [Signal Desktop Messenger](signal.html)
 
 ---
