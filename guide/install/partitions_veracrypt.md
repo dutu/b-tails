@@ -110,17 +110,22 @@ Tails comes preinstalled with software to unlock VeraCrypt encrypted partition. 
   ```
 
 * Wait for VeraCrypt application, and proceed to Encrypt Partition:
-  * Click **Volumes ▸ Create New Volume...**, select **Encrypt a non-system partition/drive**, click **Next**, select **Standard VeraCrypt volume**, click **Next**.
+  * Click **Volumes ▸ Create New Volume...**
+  * Select **Encrypt a non-system partition/drive**, click **Next**
+  * Select **Standard VeraCrypt volume**, click **Next**
+  * Click **Select Device...**
   * Select the partition that is mounted as `/media/amnesia/VeraCrypt`, then click **OK**
-  * Click **Next**, then click **OK** to encrypt the entire device/partition.
-  * Enter admin password
+  * Click **Next**, then click **Yes** to encrypt the entire device/partition
+  * Enter your Tails admin password, then click **OK**
+  * Click **Yes** to continue
   * Keep default **Encrypt Options** and click **Next**
   * Enter a volume password and click **Next**
+  * Keep option **No** selected and click **Next** 
   * Choose filesystem **exFAT** and click **Next**
   * Select **I will mount the volume on other platforms**, click **Next** and **OK**
-  * Move the mouse inside the window to increase randomness, then click **Format** to create the volume and **Yes** to confirm.
-  * Wait for the volume to be created, then click **OK**
-  * Click **Exit** to exit the VeraCrypt Volume Creation Wizard.
+  * Move the mouse inside the window to increase randomness, then click **Format** to create the volume and **Yes** to confirm
+  * Wait for the volume to be formatted, then click **OK**
+  * Click **Exit** to exit the VeraCrypt Volume Creation Wizard
   * Click **Exit** to exit the VeraCrypt
 
 
