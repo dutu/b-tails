@@ -14,10 +14,10 @@ nav_order: 3
 * Choose **Application ▸ Tails ▸ Persistent Storage**.
 
 
-* Specify a passphrase of your choice in both the **Passphrase** and **Verify Passphrase** text boxes.
+* Click **Continue**.
 
 
-* Click on the **Create** button
+* Specify a passphrase of your choice in both the **Passphrase** and **Verify Passphrase** text boxes, then click **Create Persistent Storage**.
 
 
 * Wait for the creation to finish.
@@ -34,9 +34,6 @@ nav_order: 3
   - [x] Additional Software
   - [x] Dotfiles
     > You can turn on more features later on according to your needs
-
-
-* Click **Save**.
 
 
 * Close **Persistent Storage** window.
