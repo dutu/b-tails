@@ -8,7 +8,7 @@ has_children: true
 # How to use this memory stick
 
 You can use this memory stick in two ways:
-1. Boot a computer from it (Starting Tails)
+1. Boot a computer from it (Using on Tails)
 2. Access its encrypted partition on another computer running Windows, Linux or Mac 
 
 

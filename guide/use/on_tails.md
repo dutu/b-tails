@@ -1,14 +1,16 @@
 ---
 layout: page
-title: Starting Tails
+title: Use on Tails
 parent: Use
-nav_order: 2
+nav_order: 1
+has_children: true
+has_toc: false
 ---
 
 {: .no_toc }
-# Starting Tails
+# Use on Tails
 
-Follow the steps below to use this memory stick by booting up a computer from the memory stick.
+Follow the steps below to use this memory stick by booting up a computer from the USB memory stick.
 
 - TOC
  {:toc}
@@ -138,3 +140,7 @@ VeraCrypt encrypted partition can be unlocked every time when Tails is started.
 
 
 * Choose **Connect to Tor automatically** and click **Connect to Tor**
+
+
+---
+Next:  [Signal >>](signal.html)
