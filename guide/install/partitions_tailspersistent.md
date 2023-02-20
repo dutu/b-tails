@@ -8,7 +8,6 @@ nav_order: 3
 
 ## Tails Persistent Storage
 
-
 ### Create the Persistent Storage
 
 * Choose **Application ▸ Tails ▸ Persistent Storage**.
