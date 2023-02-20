@@ -19,6 +19,7 @@ For privacy reasons, the application is setup so that the configuration is not p
 
 * Install flatpak:
   ```shell
+  $ sudo apt update
   $ sudo apt install flatpak
   ```
     * Click **Install Every Time**, when Tails asks if you want to add flatpak to your additional software
@@ -39,7 +40,7 @@ For privacy reasons, the application is setup so that the configuration is not p
   $ sudo mkdir -p $persistence_dir/flatpak
   $ sudo chown -R amnesia:amnesia $persistence_dir/flatpak
   $ chmod 700 $persistence_dir/flatpak 
-  $ signal/setup-flatpak-persistent-apps.sh
+  $ bash signal/setup-flatpak-persistent-apps.sh
   $ cp signal/setup-flatpak-persistent-apps.sh /live/persistence/TailsData_unlocked/dotfiles/.config/autostart/amnesia.d
   ```
 
