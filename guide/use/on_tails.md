@@ -122,17 +122,17 @@ VeraCrypt encrypted partition can be unlocked every time when Tails is started.
 * Open the system menu by clicking on the top-right corner.
 
 
-* If a wired connection is detected, Tails automatically connects to the network
+- [ ] If a wired connection is detected, Tails automatically connects to the network
 
 
-* To connect to a Wi-Fi network:
+- [ ] To connect to a Wi-Fi network:
   * Choose **Wi-Fi Not Connected** and then **Select Network**
 
   {: .highlight }
   > If there is no option to connect to a Wi-Fi network, your Wi-Fi adapter is not working in Tails. See the documentation on [troubleshooting Wi-Fi not working](https://tails.boum.org/doc/anonymous_internet/no-wifi/index.en.html){:target="_blank" rel="noopener"}.
 
 
-* To connect to a mobile data network
+- [ ] To connect to a mobile data network
   * Choose **Mobile Broadband**
 
 

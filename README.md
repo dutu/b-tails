@@ -68,3 +68,4 @@ Bootable USB memory drive uses Tails. To find out more about Tails, goto [offici
 3. Tails Autostart - https://gitlab.com/tstone2077/tails-autostart 
 4. Tails Overlay - https://gitlab.com/tstone2077/tails-overlay
 5. Installing and Running Signal on Tails - https://bisco.org/notes/installing-and-running-signal-on-tails/
+6. Anleitung: Tails Linux mit Sparrow Wallet - https://forum.blocktrainer.de/t/anleitung-tails-linux-mit-sparrow-wallet/28775

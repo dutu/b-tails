@@ -36,11 +36,17 @@ The instructions below can be used to add the latest Electrum version.
 * Using Tor Browser goto https://electrum.org/#download and find the latest version of Electrum.
 
 
+* Set Electrum version:
+  ```shell
+  ver=4.3.4
+  ```
+
+
 * Download the `AppImage` and the signature (`.asc`) files:
   ```shell
   $ cd ~/Downloads
-  $ torsocks wget https://download.electrum.org/4.3.3/electrum-4.3.3-x86_64.AppImage
-  $ torsocks wget https://download.electrum.org/4.3.3/electrum-4.3.3-x86_64.AppImage.asc
+  $ torsocks wget https://download.electrum.org/${ver}/electrum-${ver}-x86_64.AppImage
+  $ torsocks wget https://download.electrum.org/${ver}/electrum-${ver}-x86_64.AppImage.asc
   ```
 
 
