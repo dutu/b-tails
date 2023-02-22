@@ -82,7 +82,6 @@ The instructions below can be used to add the latest Electrum version.
 * Download udev rules to support Ledger devices:
   ```shell
   $ torsocks wget https://github.com/LedgerHQ/udev-rules/raw/master/add_udev_rules.sh
-  $ sudo bash add_udev_rules.sh
   ```
 
 
