@@ -52,7 +52,6 @@ Follow the steps below to use this memory stick by booting up a computer from th
 * Shut down the computer and plug in the B-Tails USB stick
 
 
-
 * Switch on the computer.
   Immediately press several times the Boot Menu key identified in first step.
 
@@ -135,6 +134,7 @@ VeraCrypt encrypted partition can be unlocked every time when Tails is started.
 - [ ] To connect to a mobile data network
   * Choose **Mobile Broadband**
 
+{: }
 
 * After you connect to a local network, the **Tor Connection** assistant appears
 
