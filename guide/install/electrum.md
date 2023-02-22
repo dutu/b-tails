@@ -33,12 +33,12 @@ The instructions below can be used to add the latest Electrum version.
 * Ensure you are connected to a network and the onion icon at the top confirms Tor network is ready
 
 
-* Using Tor Browser goto https://electrum.org/#download and find the latest version of Electrum.
+* Using Tor Browser goto [https://electrum.org/#download](https://electrum.org/#download){:target="_blank" rel="noopener"} and find the latest version of Electrum.
 
 
 * Set Electrum version:
   ```shell
-  ver=4.3.4
+  $ ver=4.3.4
   ```
 
 
@@ -76,6 +76,13 @@ The instructions below can be used to add the latest Electrum version.
   $ torsocks wget https://github.com/dutu/b-tails/raw/main/resources/electrum.zip
   $ 7z x electrum.zip
   $ ls -ls electrum
+  ```
+
+
+* Download udev rules to support Ledger devices:
+  ```shell
+  $ torsocks wget https://github.com/LedgerHQ/udev-rules/raw/master/add_udev_rules.sh
+  $ sudo bash add_udev_rules.sh
   ```
 
 
@@ -122,7 +129,9 @@ The instructions below can be used to add the latest Electrum version.
   #!/bin/bash
   
   persistence_dir=/live/persistence/TailsData_unlocked
+  pkexec bash ${persistence_dir}/electrum/add_udev_rules.sh  
   electrum_AppImage=$(find ${persistence_dir}/electrum/*.AppImage | tail -n 1)
+  
   ${electrum_AppImage} --forgetconfig
   ```
   
@@ -139,15 +148,9 @@ The instructions below can be used to add the latest Electrum version.
   $ cp electrum/electrum_logo.png ${persistence_dir}/electrum
   $ cp electrum/config ${persistence_dir}/electrum
   $ cp electrum/start_electrum.sh ${persistence_dir}/electrum
+  $ cp add_udev_rules.sh ${persistence_dir}/electrum
   $ mkdir -p $persistence_dir/dotfiles/.local/share/applications
   $ cp electrum/electrum.desktop $persistence_dir/dotfiles/.local/share/applications
-  ```
-
-
-* Set udev rules to support Ledger devices:
-  ```shell
-  $ torsocks wget https://github.com/LedgerHQ/udev-rules/raw/master/add_udev_rules.sh
-  $ sudo bash add_udev_rules.sh
   ```
 
 
