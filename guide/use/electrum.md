@@ -11,9 +11,9 @@ nav_order: 12
 ## Prerequisites 
 
 - [x] Your computer is started Tails from USB memory stick
-- [x] Persistance Storage is unlocked
+- [x] Persistence Storage is unlocked
 - [x] VeraCrypt encrypted partition is unlocked
-- [x] You have cooection to internet
+- [x] You have connection to internet
 
 Check: [Use on Tails](on_tails.html)  
 

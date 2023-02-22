@@ -10,7 +10,7 @@ has_toc: false
 {: .no_toc }
 # Use on Tails
 
-Follow the steps below to use this memory stick by booting up a computer from the USB memory stick.
+Follow the steps instruction below to use this memory stick by starting up a computer from the USB memory stick.
 
 - TOC
  {:toc}

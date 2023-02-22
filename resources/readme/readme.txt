@@ -1,8 +1,8 @@
 
 Q: How do I use this memory stick?
-A: You need to insert it into a computer USB port and boot up the computer from USB.
+A: You need to insert it into a computer USB port and start up the computer from USB.
 
-Q: Is there a detailed instruction on how to boot up a computer from this USB memory stick/card?
+Q: Is there a detailed instruction on how to start up a computer from this USB memory stick/card?
 A: Open the file `use_on_Tails.pdf` and follow the step-by-step instruction or check https://dutu.github.io/b-tails/guide/use/on_tails.html
 
 Q: During the process I need a password to "Unlock Persistent Storage". How do I find the password?
