@@ -1,20 +1,17 @@
 title: B-Tails
-description: Your secure computer & encrypted USB memory drive anywhere
+description: Create a secure, privacy-focused bootable USB and encrypted drive with B-Tails guide
 theme: just-the-docs
 color_scheme: dark
 # remote_theme: pmarsceill/just-the-docs
 search_enabled: true
 markdown: kramdown
 
-# To disable support for mermaid diagrams (https://mermaid.js.org),
-# comment out the `mermaid` and `version` keys below
-# By default, consuming the theme as a gem leaves mermaid disabled; it is opt-in
 mermaid:
-  # Version of mermaid library
-  # Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/
-  version: "9.3.0"
+  # Version of mermaid library. Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/
+  version: 9.4.3
   # Put any additional configuration, such as setting the theme, in _includes/mermaid_config.js
   # See also docs/ui-components/code
+  # path: "/assets/js/mermaid.min.js"
 
 callouts:
   highlight:
@@ -31,7 +28,6 @@ callouts:
   warning:
     title: Warning
     color: red
-
 
 url: https://dutu.github.io/b-tails
 

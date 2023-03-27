@@ -1,67 +1,37 @@
 
 # B-Tails
 
-The B-Tails Guide is available on GitHub Pages:
+The B-Tails Guide is available on GitHub Pages at https://dutu.github.io/b-tails/
 
-https://dutu.github.io/b-tails/
-
-This repository contains all sources and is used for Issue tracking.
+This Github repository contains all sources and is used for Issue tracking.
 
 
-# What is B-Tails?
+## What is B-Tails?
 
-With this guide you can setup a bootable USB memory stick, building everything from scratch and doing everything yourself.
+B-Tails is a guide that helps you create a bootable USB memory stick with [Tails](https://tails.boum.org), a privacy-focused operating system.
 
-Configure your USB memory stick that will give you:
-* Your encrypted USB memory stick
-* Your secure computer anywhere
+This can be used to store your personal data and to turn any computer into a secure machine.
 
-The configuration is build on [Tails](https://tails.boum.org).
+### Key Features
 
-There are a few reasons why you want to have a B-Tails USB memory stick.
+* **Secure Personal Data**: Save your personal data on an encrypted USB drive and access it on another computer.
 
----
+* **Secure Computer Anywhere**: Turn any computer into a secure machine without leaving any trace of your activity.
 
-## Your encrypted USB memory stick
-* Save your personal data on encrypted USB drive
-* Access your encrypted data on another computer
+* **Multiple Partitions**: Provides three partitions for storing personal data - two encrypted and one unencrypted.
 
+* **Privacy-Focused OS**: Works with Tails, a privacy-focused operating system that helps you stay anonymous online.
 
-## Your secure computer anywhere
+* **Ease of Use**: The guide is easy to follow and provides step-by-step instructions.
 
-**No need to trust any computer. Leave no trace.**
+* **Compatibility**: Works with most computers less than 10 years old and USB sticks with at least 16 GB of storage space.
 
-Start any computer on your B-Tails USB memory stick instead of starting on Windows, macOS, or Linux.
-You can temporarily turn the computer into a secure machine. You can also stay safe while using the computer of somebody else.
-
-* Access your encrypted data and store data encrypted on the USB drive
-* Browse the web securely and avoiding surveillance
-* Use a selection of applications to work on sensitive documents and communicate securely
-* Leave no trace on the computer
-* Leave no trace on the Internet
-
+* **Installed application** include:
+    * Latest **Electrum Bitcoin Wallet**
+    * **Signal** messenger
 
 ---
-# B-Tails overview
-
-With this guide you setup a USB memory stick, so you can use it as a bootable USB memory drive.
-
-In addition, 3 partitions are created, two encrypted and one unencrypted, where personal data can be stored.
-
-The data stored on these partitions can be accessed on a computer running any operating system, and, of course, when a computer is booted from the USB memory stick.
-
-Bootable USB memory drive uses Tails. To find out more about Tails, goto [official Tails homepage](https://tails.boum.org). 
-
-
----
-# Changelog
-
-2023-01-25:
-* first release
-
-
----
-# References
+## References
 
 1. Tails - https://tails.boum.org/
 2. How to install and use VeraCrypt on Tails - https://github.com/sunknudsen/privacy-guides/tree/master/how-to-install-and-use-veracrypt-on-tails
