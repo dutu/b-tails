@@ -26,7 +26,7 @@ This can be used to store your personal data and to turn any computer into a sec
 
 * **Compatibility**: Works with most computers less than 10 years old and USB sticks with at least 16 GB of storage space.
 
-* **Installed application** include:
+* **Installed applications** include:
     * Latest **Electrum Bitcoin Wallet**
     * **Signal** messenger
 
