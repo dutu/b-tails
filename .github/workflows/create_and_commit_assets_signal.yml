@@ -1,0 +1,39 @@
+name: Create and Commit Signal Assets Archive
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      APP: "signal"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Extract release version
+        run: |
+          VERSION_FILE=$(ls resources/${{ env.APP }}/version-*.txt)
+          RELEASE_VERSION=$(echo "$VERSION_FILE" | grep -oP '(?<=version-).*?(?=\.txt)')
+          echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
+
+      - name: Generate assets
+        run: |
+          tar -czvf ${{ env.APP }}-assets.tar.gz -C resources/${{ env.APP }} . --transform 's,^\./,${{ env.APP }}-assets/,'
+
+      - name: Move archive to resources folder
+        run: |
+          mv ${{ env.APP }}-assets.tar.gz resources/
+
+      - name: Configure Git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions@users.noreply.github.com"
+
+      - name: Commit and push changes
+        run: |
+          git add assets/*
+          git commit -m "Add/update ${{ env.APP }}-assets.tar.gz release ${{ env.RELEASE_VERSION }}"
+          git push
