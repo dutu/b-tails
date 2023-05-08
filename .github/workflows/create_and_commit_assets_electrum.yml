@@ -34,6 +34,6 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git add resources/${{ env.APP }}/*
+          git add resources/${{ env.APP }}/${{ env.APP }}-assets.tar.gz
           git commit -m "Add/update ${{ env.APP }}-assets.tar.gz release ${{ env.RELEASE_VERSION }}"
           git push
