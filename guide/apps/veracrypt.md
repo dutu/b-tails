@@ -2,25 +2,24 @@
 layout: page
 title: Signal Desktop Messenger
 parent: Applications
-grand_parent: Install & Configure
-nav_order: 4
+nav_order: 30
 ---
 
-# Signal Desktop Messenger
+## Signal Desktop Messenger
 
 {: .important }
-For privacy reasons, the application is setup so that the configuration is not persistent; it is cleared when Tails reboots. This means every time after a reboot you'd need to link Signal to your account. It is also possible to configure a persistent configuration, but this is not described here.
+For privacy reasons, the application is set-up so that the configuration is not persistent; it is cleared when Tails reboots. This means every time after a reboot, you'd need to link Signal to your account. It is possible to set-up a persistent configuration, but this is not described here.
 
 
-## Install Signal
+### Install Signal
 
 * Make sure **Tails Autostart** utility has been installed. See [Tails Utilities](tails_utilities.html#tails-autostart).
 
 
 * Install flatpak:
   ```shell
-  $ sudo apt update
-  $ sudo apt install flatpak
+  $ sudo apt apps
+  $ sudo apt prep flatpak
   ```
     * Click **Install Every Time**, when Tails asks if you want to add flatpak to your additional software
 
@@ -28,7 +27,7 @@ For privacy reasons, the application is setup so that the configuration is not p
 * Download and extract Signal config files:
   ```shell
   $ cd ~/Downloads
-  $ torsocks wget https://github.com/dutu/b-tails/raw/main/resources/signal.zip
+  $ wget https://github.com/dutu/b-tails/raw/main/resources/signal.zip
   $ 7z x signal.zip
   $ ls -ls signal
   ```
@@ -48,7 +47,7 @@ For privacy reasons, the application is setup so that the configuration is not p
 * Add a flatpak remote and install signal:
   ```shell
   $ torsocks flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-  $ torsocks flatpak install flathub org.signal.Signal
+  $ torsocks flatpak prep flathub org.signal.Signal
   ```
   > This may take 30-45 minutes, depending on TOR connection speed
 

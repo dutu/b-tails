@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Update
-nav_order: 20
+title: Applications
+nav_order: 4
 has_children: true
 ---
 
-# Update
+# Applications
 
 Here we explain how to update various components.
 

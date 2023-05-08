@@ -2,11 +2,10 @@
 layout: page
 title: Electrum Bitcoin Wallet
 parent: Applications
-grand_parent: Install & Configure
-nav_order: 1
+nav_order: 20
 ---
 
-# Electrum Bitcoin Wallet
+## Electrum Bitcoin Wallet
 
 Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the latest version.
 
@@ -20,7 +19,7 @@ The instructions below can be used to add the latest Electrum version.
 > Time required: ~30 minutes
 
 
-## Backup your bitcoin wallet
+### Backup your bitcoin wallet
 
 * Write down your wallet seed words and store them securely off the computer
 
@@ -28,7 +27,7 @@ The instructions below can be used to add the latest Electrum version.
   Make sure your wallet seed is stored safely! Only continue when it is done!
 
 
-## Install Electrum Bitcoin Wallet
+### Install Electrum Bitcoin Wallet
 
 * Ensure you are connected to a network and the onion icon at the top confirms Tor network is ready
 
@@ -160,5 +159,15 @@ The instructions below can be used to add the latest Electrum version.
   * Choose **Applications ▸ Other ▸ Electrum Bitcoin Wallet**
 
 
----
-Next: [Tails Utilities >>](tails_utilities.html)
+
+### Uninstall Electrum Bitcoin Wallet
+
+Coming soon
+{: .label .label-yellow }
+
+
+```shell
+ls /live/persistence/TailsData_unlocked/electrum/wallets
+sudo sudo rm -fr /live/persistence/TailsData_unlocked/electrum
+rm -f $persistence_dir/dotfiles/.local/share/applications/electrum.desktop
+```
