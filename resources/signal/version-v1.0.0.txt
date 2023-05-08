@@ -1,0 +1,4 @@
+# signal-assets changelog
+
+## **1.0.0** (2023-05-08)
+* first github release
