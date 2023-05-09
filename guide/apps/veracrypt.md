@@ -1,74 +1,181 @@
 ---
 layout: page
-title: Signal Desktop Messenger
+title: VeraCrypt
 parent: Applications
 nav_order: 30
 ---
 
-## Signal Desktop Messenger
+## VeraCrypt
+{: .no_toc }
 
-{: .important }
-For privacy reasons, the application is set-up so that the configuration is not persistent; it is cleared when Tails reboots. This means every time after a reboot, you'd need to link Signal to your account. It is possible to set-up a persistent configuration, but this is not described here.
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
+### Overview
+
+VeraCrypt is a powerful disk encryption software that uses advanced encryption algorithms and techniques to secure your files.
+It offers a user-friendly interface, and can create encrypted containers that can be mounted as virtual drives for easy access to your encrypted data.
+VeraCrypt is free, open-source, and available for multiple platforms.
 
 
-### Install Signal
-
-* Make sure **Tails Autostart** utility has been installed. See [Tails Utilities](tails_utilities.html#tails-autostart).
+![veracrypt.png](/images/veracrypt.png)
 
 
-* Install flatpak:
+> Tails comes preinstalled with software to unlock VeraCrypt encrypted partition. No additional software is needed.<br>
+> VeraCrypt application is needed only to create an encrypted partition for the first time, or to create new encrypted file containers.
+
+---
+### Install VeraCrypt
+
+* Open a _Terminal_ window:  choose **Applications ▸ Utilities ▸ Terminal**
+
+
+* Check latest VeraCrypt release:
   ```shell
-  $ sudo apt apps
-  $ sudo apt prep flatpak
+  $ VERSION=$(wget -qO- https://www.veracrypt.fr/en/Downloads.html | grep -Po 'veracrypt-\K[^-]+(?=-setup.tar.bz2)' | head -1)
+  $ echo $VERSION
   ```
-    * Click **Install Every Time**, when Tails asks if you want to add flatpak to your additional software
+  
+  > You can also confirm it by checking the official VeraCrypt download page at [https://www.veracrypt.fr/en/Downloads.html](https://www.veracrypt.fr/en/Downloads.html){:target="_blank" rel="noopener"}   
 
 
-* Download and extract Signal config files:
+* Download latest release of _Linux Generic Installer_ and associated _PGP signature_.
+  ```
+  $ wget https://launchpad.net/veracrypt/trunk/$VERSION/+download/veracrypt-$VERSION-setup.tar.bz2
+  $ wget https://launchpad.net/veracrypt/trunk/$VERSION/+download/veracrypt-$VERSION-setup.tar.bz2.sig
+  ```
+
+
+* Download VeraCrypt PGP Public Key:
   ```shell
   $ cd ~/Downloads
-  $ wget https://github.com/dutu/b-tails/raw/main/resources/signal.zip
-  $ 7z x signal.zip
-  $ ls -ls signal
+  $ wget https://www.idrix.fr/VeraCrypt/VeraCrypt_PGP_public_key.asc
+  ```
+
+  
+* Import VeraCrypt PGP Public Key and confirm the result: 
+
+  ```shell
+  $ gpg --import VeraCrypt_PGP_public_key.asc
+  > gpg: key 0x821ACD02680D16DE: 1 signature not checked due to a missing key
+  > gpg: key 0x821ACD02680D16DE: public key "VeraCrypt Team (2018 - Supersedes Key ID=0x54DDD393) <veracrypt@idrix.fr>" imported
+  > gpg: Total number processed: 1
+  > gpg:               imported: 1
+  > gpg: no ultimately trusted keys found
   ```
 
 
-* Setup persistent directory for flatpak software packages and make it autostart on Tails startup: 
+* Verify VeraCrypt release file:
+  ```shell
+  $ gpg --verify veracrypt-$VERSION-setup.tar.bz2.sig
+  > gpg: assuming signed data in '/home/amnesia/Tor Browser/veracrypt-1.25.9-setup.tar.bz2'
+  > gpg: Signature made Sun 20 Feb 2022 01:11:36 PM UTC
+  > gpg:                using RSA key 5069A233D55A0EEB174A5FC3821ACD02680D16DE
+  > gpg: Good signature from "VeraCrypt Team (2018 - Supersedes Key ID=0x54DDD393) <veracrypt@idrix.fr>" [unknown]
+  > gpg: WARNING: This key is not certified with a trusted signature!
+  > gpg:          There is no indication that the signature belongs to the owner.
+  > Primary key fingerprint: 5069 A233 D55A 0EEB 174A  5FC3 821A CD02 680D 16DE
+  ```
+
+
+* Extract VeraCrypt release:
+  ```shell
+  $ tar --extract --file veracrypt-$VERSION-setup.tar.bz2 veracrypt-$VERSION-setup-gui-x64
+  ```
+
+
+* Run installer:
+  ```shell
+  $ ./veracrypt-$VERSION-setup-gui-x64
+  ```
+
+  * Then enter **2** to Select `2) Extract package file veracrypt_1.25.9_amd64.tar.gz and place it to /tmp`
+  * Press **Enter** to display the license terms, then **space** to scroll down to the end of license terms
+  * Enter **y** to accept the license terms.
+  * Wait for the result:
+    ```
+    > Installation package 'veracrypt_1.25.9_amd64.tar.gz' extracted and placed in '/tmp'
+    ```
+  * Press **Enter** to exit.
+
+
+* Extract VeraCrypt binary to `~/VeraCrypt`:
+  ```shell
+  $ mkdir ~/VeraCrypt
+  $ cd ~/VeraCrypt
+  $ tar --extract --file /tmp/veracrypt_${VERSION}_amd64.tar.gz --strip-components 2 usr/bin/veracrypt
+  ```
+
+
+* Make the file executable:
+  ```shell
+  $ chmod +x veracrypt
+  ```
+
+
+* When you want to launch VeraCrypt application execute:
+  ```shell
+  $ ~/VeraCrypt/veracrypt
+  ```
+
+{: .highlight }
+Up to this point VeraCrypt is installed in RAM and disappears when you restart Tails. If you need to have VeraCrypt installed persistently, continue with next section.  
+
+
+---
+### Make VeraCrypt application persistent (optional)
+
+* Create VeraCrypt application directory on Persistent Storage and copy the application file:
   ```shell
   $ persistence_dir=/live/persistence/TailsData_unlocked
-  $ sudo mkdir -p $persistence_dir/flatpak
-  $ sudo chown -R amnesia:amnesia $persistence_dir/flatpak
-  $ chmod 700 $persistence_dir/flatpak 
-  $ bash signal/setup-flatpak-persistent-apps.sh
-  $ cp signal/setup-flatpak-persistent-apps.sh /live/persistence/TailsData_unlocked/dotfiles/.config/autostart/amnesia.d
+  $ sudo mkdir -p $persistence_dir/veracrypt
+  $ sudo chown -R amnesia:amnesia $persistence_dir/veracrypt
+  $ chmod 700 $persistence_dir/veracrypt 
+  $ rsync -a ~/VeraCrypt/ $persistence_dir/veracrypt/
   ```
 
-
-* Add a flatpak remote and install signal:
+  
+* Add VeraCrypt menu item to the desktop menu:
   ```shell
-  $ torsocks flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-  $ torsocks flatpak prep flathub org.signal.Signal
+  $ tar -xvf /tmp/veracrypt_${VERSION}_amd64.tar.gz usr/share/applications/veracrypt.desktop -O > $persistence_dir/dotfiles/.local/share/applications/veracrypt.desktop
+  $ tar -xvf /tmp/veracrypt_${VERSION}_amd64.tar.gz usr/share/pixmaps/veracrypt.xpm -O > $persistence_dir/veracrypt/veracrypt.xpm
+  $ sed -i 's|Exec=.*|Exec=/live/persistence/TailsData_unlocked/veracrypt/veracrypt|' $persistence_dir/dotfiles/.local/share/applications/veracrypt.desktop
+  $ sed -i 's|Icon=.*|Icon=/live/persistence/TailsData_unlocked/veracrypt/veracrypt.xpm|' $persistence_dir/dotfiles/.local/share/applications/veracrypt.desktop
   ```
-  > This may take 30-45 minutes, depending on TOR connection speed
 
 
-* Add Signal app icon on Gnome **Applications ▸ Other ▸ Signal**:
+> The menu item will be visible after Tails reboot.
+
+
+* To start VeraCrypt choose **Applications ▸ Other ▸ VeraCrypt**
+
+
+---
+### For the Future: Update VeraCrypt
+
+* Follow the steps in section [Remove VeraCrypt persistent installation](#remove-veracrypt-persistent-installation).
+
+
+* Follow the steps in sections [Install VeraCrypt](#install-veracrypt) and [Make VeraCrypt application persistent (optional)](#make-veracrypt-application-persistent-optional).
+
+
+---
+### Remove VeraCrypt persistent installation
+
+* Remove VeraCrypt application directory:
   ```shell
-  $ mkdir -p $persistence_dir/dotfiles/.local/share/applications
-  $ cp signal/signal.desktop $persistence_dir/dotfiles/.local/share/applications
-  $ sudo mkdir -p $persistence_dir/signal
-  $ sudo chown -R amnesia:amnesia $persistence_dir/signal
-  $ chmod 700 $persistence_dir/signal 
-  $ cp signal/start_signal.sh $persistence_dir/signal
+  $ persistence_dir=/live/persistence/TailsData_unlocked
+  $ rm -fr $persistence_dir/veracrypt
   ```
-  > The app icon will be visible after next Tails reboot
 
 
-* Restart Tails and unlock the Persistent Storage.
-
-
-* You can now start Signal: 
-  * Choose **Applications ▸ Other ▸ Signal**
-
+* Remove VeraCrypt menu item from the desktop menu:
+  ```shell
+  $ rm $persistence_dir/dotfiles/.local/share/applications/veracrypt.desktop
+  ```
 
 ---

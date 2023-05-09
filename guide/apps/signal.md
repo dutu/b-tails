@@ -31,6 +31,9 @@ For privacy reasons, the application is set-up so that the configuration is not 
 * Make sure **Flatpak** has been installed. See [Flatpak](/guide/utils/flatpak.html).
 
 
+* Open a _Terminal_ window:  choose **Applications ▸ Utilities ▸ Terminal**
+
+
 * Add a flatpak remote and install signal:
   ```shell
   $ torsocks flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -57,16 +60,15 @@ For privacy reasons, the application is set-up so that the configuration is not 
   ```
 
 
-* Add Signal app icon on Gnome **Applications ▸ Other ▸ Signal**:
+* Add Signal menu item to the desktop menu:
   ```shell
   $ mkdir -p $persistence_dir/dotfiles/.local/share/applications
   $ cp signal-assets/signal.desktop $persistence_dir/dotfiles/.local/share/applications
-  $ update-desktop-database ~/.local/share/applications
   ```
 
+> The menu item will be visible after Tails reboot.
 
-* You can now start Signal: 
-  * Choose **Applications ▸ Other ▸ Signal**
+* To start Signal choose **Applications ▸ Other ▸ Signal**
 
 
 ---
@@ -100,7 +102,7 @@ For privacy reasons, the application is set-up so that the configuration is not 
   ```
   
 
-* Remove Signal app icon:
+* Remove Signal menu item from the desktop menu:
   ```shell
   rm $persistence_dir/dotfiles/.local/share/applications/signal.desktop
   ```
