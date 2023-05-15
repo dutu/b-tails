@@ -40,8 +40,8 @@ nav_order: 20
 * Download and extract the script help files:
   ```shell
   $ cd ~/Downloads
-  $ wget https://raw.githubusercontent.com/dutu/b-tails/master/resources/flatpak-utils.tar.gz
-  $ tar -xzvf flatpak-utils.tar.gz
+  $ wget https://raw.githubusercontent.com/dutu/b-tails/master/resources/flatpak-assets.tar.gz
+  $ tar -xzvf flatpak-assets.tar.gz
   ```
 
 
@@ -56,13 +56,19 @@ nav_order: 20
 
 * Execute the scripts to set-up persistent Flatpak apps: 
   ```shell
-  $ chmod +x flatpak-utils/flatpak-setup-persistent-apps.sh
-  $ ./flatpak-utils/flatpak-setup-persistent-apps.sh
+  $ chmod +x flatpak-assets/flatpak-setup-persistent-apps.sh
+  $ ./flatpak-assets/flatpak-setup-persistent-apps.sh
   ```
 
-* Make the script autostart on Tails startup:
+
+* Make the scripts autostart on Tails startup:
   ```shell
-  $ rsync -a flatpak-assets/-setup-persistent-apps.sh $persistence_dir/dotfiles/.config/autostart/amnesia.d/
+  $ rsync -a flatpak-assets/flatpak-*.sh $persistence_dir/dotfiles/.config/autostart/amnesia.d/
   ```
 
+* Add the Flathub repository
+  ```shell
+  torsocks flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  ```
+  
 ---

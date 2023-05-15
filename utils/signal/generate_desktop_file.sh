@@ -27,7 +27,7 @@ mkdir -p $persistence_dir/$app_id
 chown -R amnesia:amnesia $persistence_dir/$app_id
 chmod 700 $persistence_dir/$app_id
 
-# Copy (and overwrite) the desktop file
+# Copy the desktop file
 echo "Copying '$app_id.desktop' from flatpak application directory..."
 rsync -a "$flatpak_share_dir/applications/$app_id.desktop" "$persistence_dir/$app_id/"
 
@@ -35,3 +35,6 @@ rsync -a "$flatpak_share_dir/applications/$app_id.desktop" "$persistence_dir/$ap
 echo "Replacing Exec entry in $app_id.desktop..."
 sed -i "s|Exec=.*|Exec=$persistence_dir/$app_id/start_$app_id.sh \"%U\"|g" "$persistence_dir/$app_id/$app_id.desktop"
 
+# Replace the Exec entry in the target file
+echo "Replacing Icon entry in $app_id.desktop..."
+sed -i "s|Icon=.*|Icon=$flatpak_share_dir|g" "$persistence_dir/$app_id/$app_id.desktop"

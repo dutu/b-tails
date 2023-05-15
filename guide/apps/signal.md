@@ -36,7 +36,6 @@ For privacy reasons, the application is set-up so that the configuration is not 
 
 * Add a flatpak remote and install signal:
   ```shell
-  $ torsocks flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   $ torsocks flatpak install flathub org.signal.Signal
   ```
   > This may take 30-45 minutes, depending on TOR connection speed
@@ -52,11 +51,8 @@ For privacy reasons, the application is set-up so that the configuration is not 
 
 * Execute the script to generate the file for desktop menu item:
   ```shell
-  $ sudo signal-assets/* $persistence_dir/signal
-  $ sudo mkdir -p $persistence_dir/signal
-  $ sudo chown -R amnesia:amnesia $persistence_dir/signal
-  $ chmod 700 $persistence_dir/signal 
-  $ cp signal-assets/* $persistence_dir/signal
+  $ chmod +x signal-assets/generate_desktop_file.sh
+  $ sudo ./signal-assets/generate_desktop_file.sh
   ```
   > This script generates a .desktop file that enables GNOME to display the menu item. This starts signal with a custom start-up script (`start_org.signal.Signal.sh`), which sets the proxy before launching the application.
 
