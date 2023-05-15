@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Signal Desktop Messenger
+title: Telegram Desktop Messenger
 parent: Applications
-nav_order: 30
+nav_order: 40
 ---
 
-## Signal Desktop Messenger
+## Telegram Desktop Messenger
 {: .no_toc }
 
 ## Table of contents
@@ -37,36 +37,18 @@ For privacy reasons, the application is set-up so that the configuration is not 
 * Add a flatpak remote and install signal:
   ```shell
   $ torsocks flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-  $ torsocks flatpak install flathub org.signal.Signal
+  $ torsocks flatpak install flathub org.telegram.desktop
   ```
   > This may take 30-45 minutes, depending on TOR connection speed
 
 
-* Download and extract Signal asset files:
+* Create persistent Telegram menu item in the desktop menu:
   ```shell
-  $ cd ~/Downloads
-  $ wget https://raw.githubusercontent.com/dutu/b-tails/master/resources/signal-assets.tar.gz
-  $ tar -xzvf signal-assets.tar.gz
+  $ persistence_dir=/live/persistence/TailsData_unlocked
+  $ ln -s $persistence_dir/dotfiles/.local/share/applications/org.telegram.desktop.desktop $persistence_dir/flatpak/exports/share/applications/org.telegram.desktop.desktop
   ```
 
-
-* Execute the script to generate the file for desktop menu item:
-  ```shell
-  $ sudo signal-assets/* $persistence_dir/signal
-  $ sudo mkdir -p $persistence_dir/signal
-  $ sudo chown -R amnesia:amnesia $persistence_dir/signal
-  $ chmod 700 $persistence_dir/signal 
-  $ cp signal-assets/* $persistence_dir/signal
-  ```
-  > This script generates a .desktop file that enables GNOME to display the menu item. This starts signal with a custom start-up script (`start_org.signal.Signal.sh`), which sets the proxy before launching the application.
-
-
-* Copy the start-up script files to app directory:
-  ```shell
-  $ chmod +x signal-assets/start_org.signal.Signal.sh
-  $ rsync -a signal-assets/start_org.signal.Signal.sh $persistence_dir/org.signal.Signal/
-  ```
-
+> The menu item will be visible after Tails reboot.
 
 * To start Signal choose **Applications ▸ Other ▸ Signal**
 

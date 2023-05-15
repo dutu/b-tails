@@ -1,8 +1,8 @@
 #!/bin/sh
 
-persistence_dir=/live/persistence/TailsData_unlocked
-install_dir=/home/amnesia/.local/share
-apps_data_dir=/home/amnesia/.var/app
+persistence_dir='/live/persistence/TailsData_unlocked'
+install_dir='/home/amnesia/.local/share'
+apps_data_dir='/home/amnesia/.var/app'
 
 # Create the directory for flatpak software packages
 mkdir -p $install_dir

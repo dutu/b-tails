@@ -2,7 +2,7 @@
 layout: page
 title: VeraCrypt
 parent: Applications
-nav_order: 30
+nav_order: 10
 ---
 
 ## VeraCrypt

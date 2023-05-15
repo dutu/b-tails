@@ -37,6 +37,21 @@ nav_order: 20
     * Click **Install Every Time**, when Tails asks if you want to add flatpak to your additional software
 
 
+* Download and extract the script help files:
+  ```shell
+  $ cd ~/Downloads
+  $ wget https://raw.githubusercontent.com/dutu/b-tails/master/resources/flatpak-assets.tar.gz
+  $ tar -xzvf flatpak-assets.tar.gz
+  ```
+
+
+* Execute the script to allow GNOME desktop locate the icons for Flatpak applications menu items:
+  ```shell
+  $ flatpak-assets/update_XDG_DATA_DIRS.sh
+  ```
+  | The change takes effect after next Tails reboot.
+
+
 * Create persistent directory for flatpak software packages:
   ```shell
   $ persistence_dir=/live/persistence/TailsData_unlocked
@@ -45,22 +60,24 @@ nav_order: 20
   $ chmod 700 $persistence_dir/flatpak 
   ```
 
-  
-* Download and extract the script to setup persistent software packages:
+
+* Execute the scripts to set-up persistent Flatpak apps: 
   ```shell
-  $ cd ~/Downloads
-  $ wget https://raw.githubusercontent.com/dutu/b-tails/master/resources/flatpak-assets.tar.gz
-  $ tar -xzvf flatpak-assets.tar.gz
+  $ chmod +x flatpak-assets/setup-flatpak-persistent-apps.sh
+  $ flatpak-assets/setup-flatpak-persistent-apps.sh
   ```
 
 
-* Make the script autostart on Tails startup:
+* Execute the scripts to create menu items once Flatpak is installed:
   ```shell
-  $ autostart_dir=$persistence_dir/dotfiles/.config/autostart/amnesia.d
-  $ cp flatpak-assets/setup-flatpak-persistent-apps.sh $autostart_dir
-  $ chmod +x $autostart_dir/setup-flatpak-persistent-apps.sh
-  $ $autostart_dir/setup-flatpak-persistent-apps.sh
+  $ chmod +x flatpak-assets/flatpak-create_app_menu_items_after_install.sh
+  $ $autostart_dir/flatpak-create_app_menu_items_after_install.sh
   ```
 
+
+* Make the scripts autostart on Tails startup:
+  ```shell
+  $ rsync -a flatpak-assets/flatpak-*.sh $persistence_dir/dotfiles/.config/autostart/amnesia.d/
+  ```
 
 ---

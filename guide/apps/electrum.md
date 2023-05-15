@@ -44,7 +44,7 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
   $ wget https://download.electrum.org/$VERSION/electrum-$VERSION-x86_64.AppImage.asc
   ```
 
-* Download archive containing udev rules for supported hardware wallet devices, and signature (`.asc`):.
+* Download archive containing udev rules for supported hardware wallet devices, and signature (`.asc`):
   ```shell
   $ cd ~/Downloads
   $ wget https://download.electrum.org/$VERSION/Electrum-$VERSION.tar.gz
@@ -170,21 +170,10 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
 > The menu item will be visible after Tails reboot.
 
 
-* To start Electrum choose **Applications ▸ Other ▸ Electrum**
+* To start Electrum choose **Applications ▸ Other ▸ Electrum**.
 
 
 * Restart Tails and unlock the Persistent Storage.
-
-
-### Add udev rules to support hardware wallet devices
-
-* Download udev rules to support Ledger devices:
-  ```shell
-  $ persistence_dir=/live/persistence/TailsData_unlocked
-  $ wget -P $persistence_dir/electrum/startup https://github.com/LedgerHQ/udev-rules/raw/master/add_udev_rules.sh
-  $ chmode +x $persistence_dir/electrum/startup/add_udev_rules.sh
-  $ sudo $persistence_dir/startup/add_udev_rules.sh
-  ```
 
 
 ### For the Future: Update Electrum
@@ -213,4 +202,3 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
   rm $persistence_dir/dotfiles/.local/share/applications/Electrum.desktop
   ```
 --- 
-

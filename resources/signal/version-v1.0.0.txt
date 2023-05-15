@@ -2,3 +2,6 @@
 
 ## **1.0.0** (2023-05-08)
 * first github release
+
+Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=telegram-desktop --file-forwarding org.telegram.desktop -- @@u %u @@
+Terminal=false
