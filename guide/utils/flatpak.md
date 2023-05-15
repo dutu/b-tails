@@ -37,14 +37,6 @@ nav_order: 20
     * Click **Install Every Time**, when Tails asks if you want to add flatpak to your additional software
 
 
-* Download and extract the script help files:
-  ```shell
-  $ cd ~/Downloads
-  $ wget https://raw.githubusercontent.com/dutu/b-tails/master/resources/flatpak-utils.tar.gz
-  $ tar -xzvf flatpak-utils.tar.gz
-  ```
-
-
 * Create persistent directory for flatpak software packages:
   ```shell
   $ persistence_dir=/live/persistence/TailsData_unlocked
@@ -53,6 +45,18 @@ nav_order: 20
   $ chmod 700 $persistence_dir/flatpak 
   ```
 
+* Download and extract the script utility files:
+  ```shell
+  $ cd ~/Downloads
+  $ wget https://raw.githubusercontent.com/dutu/b-tails/master/utils/flatpak-utils.tar.gz
+  $ tar -xzvf flatpak-utils.tar.gz
+  ```
+
+* Move utility files to persistent directory:
+  ```shell
+  $ chmod +x flatpak-utils/flatpak-installation-check.sh
+  $ rsync -a flatpak-utils/flatpak-installation-check.sh $persistence_dir/flatpak/
+  ```
 
 * Execute the scripts to set-up persistent Flatpak apps: 
   ```shell
@@ -62,7 +66,7 @@ nav_order: 20
 
 * Make the script autostart on Tails startup:
   ```shell
-  $ rsync -a flatpak-assets/-setup-persistent-apps.sh $persistence_dir/dotfiles/.config/autostart/amnesia.d/
+  $ rsync -a flatpak-utils/flatpak-setup-persistent-apps.sh $persistence_dir/dotfiles/.config/autostart/amnesia.d/
   ```
 
 ---
