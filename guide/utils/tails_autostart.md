@@ -45,7 +45,7 @@ This facilitates other applications to work properly.
   ```shell
   $ cd tails-autostart
   $ chmod +x install_tails_autostart.sh
-  $ ./install_tails_autostart.sh
+  $ sudo ./install_tails_autostart.sh
   ```
 
 ---

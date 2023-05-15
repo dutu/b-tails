@@ -47,7 +47,8 @@ nav_order: 20
 
 * Execute the script to allow GNOME desktop locate the icons for Flatpak applications menu items:
   ```shell
-  $ flatpak-assets/update_XDG_DATA_DIRS.sh
+  $ chmod +x flatpak-assets/update_XDG_DATA_DIRS.sh 
+  $ ./flatpak-assets/update_XDG_DATA_DIRS.sh
   ```
   | The change takes effect after next Tails reboot.
 
@@ -63,15 +64,15 @@ nav_order: 20
 
 * Execute the scripts to set-up persistent Flatpak apps: 
   ```shell
-  $ chmod +x flatpak-assets/setup-flatpak-persistent-apps.sh
-  $ flatpak-assets/setup-flatpak-persistent-apps.sh
+  $ chmod +x flatpak-assets/flatpak-setup-persistent-apps.sh
+  $ ./flatpak-assets/flatpak-setup-persistent-apps.sh
   ```
 
 
 * Execute the scripts to create menu items once Flatpak is installed:
   ```shell
   $ chmod +x flatpak-assets/flatpak-create_app_menu_items_after_install.sh
-  $ $autostart_dir/flatpak-create_app_menu_items_after_install.sh
+  $ ./flatpak-assets/flatpak-create_app_menu_items_after_install.sh
   ```
 
 
