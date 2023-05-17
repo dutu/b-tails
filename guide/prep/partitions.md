@@ -53,7 +53,9 @@ We partition the USB memory stick to have the following structure:
 
 * Start **Disks** application:
     * Choose **Applications ▸ Utilities ▸ Disks**
-    * Select the USB flash drive
+
+
+* Select the USB flash drive on the left panel.
 
 
 * Create the `README` partition:
