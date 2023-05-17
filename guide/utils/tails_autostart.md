@@ -43,9 +43,8 @@ This facilitates other applications to work properly.
 
 * Run installation script:
   ```shell
-  $ cd tails-autostart
-  $ chmod +x install_tails_autostart.sh
-  $ sudo ./install_tails_autostart.sh
+  $ chmod +x tails-autostart/install_tails_autostart.sh
+  $ ./tails-autostart/install_tails_autostart.sh
   ```
 
 ---
@@ -63,14 +62,14 @@ This facilitates other applications to work properly.
 
 * Check installed version:
   ```shell
-  version_file=$(find "/live/persistence/TailsData_unlocked/tails-autostart" -maxdepth 1 -type f -name "version*.txt" | head -n 1)
+  version_file=$(find "/home/amnesia/.config/autostart/tails-autostart" -maxdepth 1 -type f -name "version*.txt" | head -n 1)
   echo "${version_file}" | grep -oP 'version-\K.*(?=\.txt)'
   ```
   
 
 * Check the latest Tails Autostart release:
   ```shell
-  wget -qO- https://api.github.com/repos/joinmarket-webui/jam/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")'
+  wget -qO- https://api.github.com/repos/dutu/tails-autostart/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")'
   ```
 
 
@@ -88,8 +87,8 @@ This facilitates other applications to work properly.
 
 * Remove Tails Autostart files:
   ```shell
-  $ rm /live/persistence/TailsData_unlocked/dotfiles/.config/autostart/Tails-autostart.desktop
-  $ find /live/persistence/TailsData_unlocked/dotfiles/.config/autostart/ -type f -name "*.example" -exec rm -f {} +
-  $ sudo rm -rf /live/persistence/TailsData_unlocked/tails-autostart
+  $ rm /live/persistence/TailsData_unlocked/dotfiles/.config/autostart/tails-autostart.desktop
+  $ rm -fr /live/persistence/TailsData_unlocked/dotfiles/.config/autostart/tails-autostart
   ```
-
+  > Scripts in `autostart/amnesia.d` and `autostart/root.d` intended to run on startup will remain in place. However, with the removal of Tails autostart, they will no longer be triggered at Tails startup.  
+  
