@@ -34,7 +34,7 @@ For privacy reasons, the application is set-up so that the configuration is not 
 * Open a _Terminal_ window:  choose **Applications ▸ Utilities ▸ Terminal**
 
 
-* Add a flatpak remote and install signal:
+* Install signal:
   ```shell
   $ torsocks flatpak install flathub org.signal.Signal
   ```

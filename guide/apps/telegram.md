@@ -34,7 +34,7 @@ For privacy reasons, the application is set-up so that the configuration is not 
 * Open a _Terminal_ window:  choose **Applications ▸ Utilities ▸ Terminal**
 
 
-* Add a flatpak remote and install signal:
+* Add a flatpak remote and install Telegram:
   ```shell
   $ torsocks flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   $ torsocks flatpak install flathub org.telegram.desktop

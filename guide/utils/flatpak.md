@@ -52,15 +52,13 @@ nav_order: 20
   $ tar -xzvf flatpak-utils.tar.gz
   ```
 
-* Move utility files to persistent directory:
+* Set execute permission for scripts and move the files to persistent directory:
   ```shell
-  $ chmod +x flatpak-utils/flatpak-installation-check.sh
-  $ rsync -a flatpak-utils/flatpak-installation-check.sh $persistence_dir/flatpak/
+  $ find flatpak-utils -type f -name "*.sh" -exec chmod +x {} \;
   ```
 
 * Execute the scripts to set-up persistent Flatpak apps: 
   ```shell
-  $ chmod +x flatpak-utils/flatpak-setup-persistent-apps.sh
   $ ./flatpak-utils/flatpak-setup-persistent-apps.sh
   ```
 
@@ -69,4 +67,14 @@ nav_order: 20
   $ rsync -a flatpak-utils/flatpak-setup-persistent-apps.sh $persistence_dir/dotfiles/.config/autostart/amnesia.d/
   ```
 
+* Copy flatpak-utils to persistent directory:
+  ```shell
+  $ rsync -a flatpak-utils/ $persistence_dir/flatpak/
+  ```
+
+* Add flatpak remote and install signal:
+  ```shell
+  $ torsocks flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  ```
+  
 ---
