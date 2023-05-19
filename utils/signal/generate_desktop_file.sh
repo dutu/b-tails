@@ -1,14 +1,21 @@
 #!/bin/bash
 
-# This script generates a persistent .desktop file,
-# that enables GNOME to display the menu item with a custom start-up script for the application.
-# The custom script 'start_signal.sh' is used to set the proxy before launching the application.
+# This script generates .desktop file, that enables GNOME to display the menu item.
+# Exec entry is replaced to execute a custom script `start_$app_id.sh` that launches the application.
+# Icon entry is replaced to point to application's icon file in flatpak share directory.
+#
 
 # Define the persistence directory
 persistence_dir=/live/persistence/TailsData_unlocked
 
+# Define the the local and persistent .desktop directory for menu items
+local_share_dir="$HOME/.local/share/applications/"
+persistsnt_share_dir=
+
+
 # Define the Flatpak share directory
 flatpak_share_dir="$HOME/.local/share/flatpak/exports/share"
+
 
 # Define the Signal app id
 app_id="org.signal.Signal"

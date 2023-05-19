@@ -10,7 +10,7 @@
 
 # Define the persistence directory
 persistence_dir="/live/persistence/TailsData_unlocked"
-persistent_desktop_dir="$persistence_dir/dotfiles/local/share/applications"
+persistent_desktop_dir="$persistence_dir/dotfiles/.local/share/applications"
 
 # Define the Flatpak applications directory and local desktop directory
 flatpak_share_dir="/home/amnesia/.local/share/flatpak/exports/share"
@@ -83,7 +83,7 @@ update_flatpak_app_icon() {
 
 # Ensure application ID has been passed to the script
 if [ $# -eq 0 ]; then
-  log "You must enter exactly 1 argument, the flatpak application id"
+  log "No arguments supplied. Please provide a flatpak application ID."
   exit 1
 fi
 

@@ -45,34 +45,30 @@ nav_order: 20
   $ chmod 700 $persistence_dir/flatpak 
   ```
 
-* Download and extract the script utility files:
+
+* Download and extract utility files:
   ```shell
   $ cd ~/Downloads
   $ wget https://raw.githubusercontent.com/dutu/b-tails/master/utils/flatpak-utils.tar.gz
   $ tar -xzvf flatpak-utils.tar.gz
   ```
 
-* Set execute permission for scripts and move the files to persistent directory:
+
+* Copy utility files to persistent storage and make scripts executable:
   ```shell
-  $ find flatpak-utils -type f -name "*.sh" -exec chmod +x {} \;
+  $ rsync -av flatpak-utils/ $persistence_dir/flatpak/utils/
+  $ find $persistence_dir/flatpak/utils -type f -name "*.sh" -exec chmod +x {} \;
   ```
 
-* Execute the scripts to set-up persistent Flatpak apps: 
+
+* Execute the scripts to set-up persistent Flatpak apps and make it autostart: 
   ```shell
-  $ ./flatpak-utils/flatpak-setup-persistent-apps.sh
+  $ $persistence_dir/flatpak/utils/flatpak-setup-persistent-apps.sh
+  $ rsync -a $persistence_dir/flatpak/utils/flatpak-setup-persistent-apps.sh $persistence_dir/dotfiles/.config/autostart/amnesia.d/
   ```
 
-* Make the script autostart on Tails startup:
-  ```shell
-  $ rsync -a flatpak-utils/flatpak-setup-persistent-apps.sh $persistence_dir/dotfiles/.config/autostart/amnesia.d/
-  ```
 
-* Copy flatpak-utils to persistent directory:
-  ```shell
-  $ rsync -a flatpak-utils/ $persistence_dir/flatpak/
-  ```
-
-* Add flatpak remote and install signal:
+* Add flatpak remote:
   ```shell
   $ torsocks flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   ```

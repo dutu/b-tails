@@ -9,8 +9,8 @@
 persistence_dir=/live/persistence/TailsData_unlocked
 
 # Define the Flatpak applications directory and the .desktop directory for menu items
-flatpak_share_dir="$HOME/.local/share/flatpak/exports/share/applications/"
-local_dir="$HOME/.local/share/applications/"
+flatpak_share_dir="/home/amnesia/.local/share/flatpak/exports/share/applications/"
+local_dir="/home/amnesia/.local/share/applications/"
 persistent_local_dir="$persistence_dir/dotfiles/local/share/applications"
 
 # Logs a message to the terminal or the system log, depending on context
@@ -26,8 +26,6 @@ log() {
 
 create_app_menu_item() {
   app_id=$1
-
-
   # Determine the source of the .desktop file for the app
   if [[ -f "$persistence_dir/$app_id/$app_id.desktop" ]]; then
     # If a custom desktop file exists in the persistence directory use this as source
