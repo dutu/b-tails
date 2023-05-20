@@ -9,9 +9,9 @@
 persistence_dir=/live/persistence/TailsData_unlocked
 
 # Define the Flatpak applications directory and the .desktop directory for menu items
-flatpak_share_dir="/home/amnesia/.local/share/flatpak/exports/share/applications/"
-local_dir="/home/amnesia/.local/share/applications/"
-persistent_local_dir="$persistence_dir/dotfiles/local/share/applications"
+flatpak_share_dir="/home/amnesia/.local/share/flatpak/exports/share"
+local_dir="/home/amnesia/.local/share/applications"
+persistent_local_dir="$persistence_dir/dotfiles/.local/share/applications"
 
 # Logs a message to the terminal or the system log, depending on context
 log() {
@@ -38,18 +38,17 @@ create_app_menu_item() {
   # Check if the source .desktop file has been located
   if [[ -f $desktop_file_path ]]; then
     # Create a copy of it in the persistent local .desktop directory
-    log "Create menu item for $app_id..."
     cp "$desktop_file_path" "$persistent_local_dir/$app_id.desktop"
 
     # Check if a symbolic link or file already exists in local .desktop directory
     if [[ -e "$local_dir/$app_id.desktop" ]]; then
       # If it does, delete it
-      log "Menu item for $app_id already exists. Deleting..."
       rm "$local_dir/$app_id.desktop"
     fi
 
     # Create a symbolic link to it in the local .desktop directory
     ln -s "$persistent_local_dir/$app_id.desktop" "$local_dir/$app_id.desktop"
+    log "Created menu item for $app_id."
     exit 0
   else
     log "Could not locate the source .desktop file for application ID '$app_id'. Exiting..."

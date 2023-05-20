@@ -1,13 +1,8 @@
 #!/bin/bash
 
-# This script is designed to start a specific Flatpak application.
-# The script performs the following tasks:
-#   * Verifies the availability of the Flatpak package. If not available, the script exits.
-#   * Launches the Flatpak application.
-# The script contains a placeholder where users can insert additional commands to be executed before launching the Flatpak application. This could be setting a proxy server, for example.
-# The script accepts an optional parameter. This parameter, if provided, is assumed to be a URL that is passed from a .desktop file, which happens in cases such as drag and drop operations where the file's URL can be directly passed to the Flatpak application.
-
-exec_command='log "error" "This is a generic script which needs to be customised to launch the flatpak application"'
+# This script is designed to execute the 'flatpak' command along with any parameters passed to this script.
+# Firstly, the verifies the availability of the Flatpak package. If not available, it terminates.
+# The script provides a designated section where users can insert additional commands or settings to be configured before launching the Flatpak application (e.g., setting a proxy server).
 
 # Logs a message to the terminal or the system log, depending on context.
 # The first argument is the type of message ("info"|"warning"|"error"|"question"), the second argument is the actual message to log.
@@ -36,5 +31,5 @@ fi
 
 ### END: Pre-launch customization.
 
-# Executes exec command
-eval "$exec_command"
+# Executes 'flatpak' command with all parameters passed to this script
+flatpak "$@"

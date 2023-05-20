@@ -15,26 +15,14 @@ persistent_desktop_dir="$persistence_dir/dotfiles/.local/share/applications"
 # Define the Flatpak applications directory and local desktop directory
 flatpak_share_dir="/home/amnesia/.local/share/flatpak/exports/share"
 local_desktop_dir="/home/amnesia/.local/share/applications"
-
-# Logs a message to the terminal or the system log, depending on context
-log() {
-  if [ -t 1 ]; then
-    # If File descriptor 1 (stdout) is open and refers to a terminal
-    echo "$1"
-  else
-    # If stdout is not a terminal (maybe it's a pipe, a file, or /dev/null)
-    logger "$1"
-  fi
-}
+app_id="$1"
 
 # Function to update the Flatpak app's icon
 update_flatpak_app_icon() {
-  app_id=$1
-
   local_desktop_path="$persistent_desktop_dir/$app_id.desktop"
   # Check if the .desktop file exists
   if [[ ! -f $local_desktop_path ]]; then
-    log "Error: $local_desktop_path does not exist for app id $app_id."
+    echo "Error: $local_desktop_path does not exist for app id $app_id."
     exit 2
   fi
 
@@ -43,7 +31,7 @@ update_flatpak_app_icon() {
 
   # Check if the old icon path matches the app id
   if [[ "$old_icon" != "$app_id" ]]; then
-    log "Error: Icon entry does not match the app id $app_id."
+    echo "Error: Icon entry does not match the app id $app_id."
     exit 1
   fi
 
@@ -75,23 +63,23 @@ update_flatpak_app_icon() {
     # Force GNOME to recognize a change in the .desktop file to refresh the menu item
     mv "$local_desktop_path" "$local_desktop_dir/$app_id.temp.desktop"
     mv "$local_desktop_dir/$app_id.temp.desktop" "$local_desktop_path"
-    log "New Icon=$new_icon for app id $app_id."
+    echo "New Icon=$new_icon for app id $app_id."
   else
-    log "Error: New icon not found for app id $app_id."
+    echo "Error: New icon not found for app id $app_id."
   fi
 }
 
 # Ensure application ID has been passed to the script
 if [ $# -eq 0 ]; then
-  log "No arguments supplied. Please provide a flatpak application ID."
+  echo "No arguments supplied. Please provide a flatpak application ID."
   exit 1
 fi
 
 # Ensure we are running as 'amnesia'
 if test "$(whoami)" != "amnesia"; then
-  log "You must run this program as 'amnesia' user."
+  echo "You must run this program as 'amnesia' user."
   exit 1
 fi
 
 # Call the function with the first command line argument
-update_flatpak_app_icon "$1"
+update_flatpak_app_icon
