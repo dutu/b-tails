@@ -35,5 +35,5 @@ fi
 ### END: Pre-launch customization.
 
 # Executes 'flatpak' command with all parameters passed to this script
-notify-send -u info "Starting: flatpak $*"
+notify-send -u normal "Starting: flatpak $*"
 flatpak "$@"
