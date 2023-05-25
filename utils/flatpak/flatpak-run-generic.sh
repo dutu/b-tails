@@ -20,7 +20,7 @@ log() {
 }
 
 # Run the flatpak-installation-check.sh script and capture the exit code
-$persistence_dir/flatpak-installation-check.sh
+$persistence_dir/flatpak/utils/flatpak-installation-check.sh
 exit_code=$?
 
 # If the exit code is not 0, exit with the same code
@@ -35,4 +35,5 @@ fi
 ### END: Pre-launch customization.
 
 # Executes 'flatpak' command with all parameters passed to this script
+notify-send -u info "Starting: flatpak $*"
 flatpak "$@"

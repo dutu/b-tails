@@ -17,16 +17,18 @@ nav_order: 40
 ---
 ### Overview
 
-[Signal](https://signal.org/){:target="_blank" rel="noopener"} is a privacy-focused messaging application that offers end-to-end encryption for secure text messages, voice calls, and video calls.
+[Telegram](https://telegram.org/){:target="_blank" rel="noopener"} is an instant messaging app providing voice, video, and text communications, along with secure end-to-end encrypted messaging, file sharing, and a variety of community features like groups and channels.
 
 
-![signal.png](/images/signal.png)
+![telegram_welcome_screen.png.png](/images/telegram_welcome_screen.png)
 
 {: .highlight }
-For privacy reasons, the application is set-up so that the configuration is not persistent; it is cleared when Tails reboots. This means every time after a reboot, you'd need to link Signal to your account. It is possible to set-up a persistent configuration, but this is not described here.
+For privacy, the application's configuration is not persistent and resets with every Tails reboot.<br> 
+As a result, after each reboot you must set the proxy server and link Telegram to your account.<br>
+Although possible, the process for setting up a persistent configuration isn't covered in this instruction.
 
 ---
-### Install Signal
+### Install Telegram
 
 * Make sure **Flatpak** has been installed. See [Flatpak](/guide/utils/flatpak.html).
 
@@ -34,98 +36,114 @@ For privacy reasons, the application is set-up so that the configuration is not 
 * Open a _Terminal_ window:  choose **Applications ▸ Utilities ▸ Terminal**
 
 
-* Add a flatpak remote and install Telegram:
+* Install Telegram:
   ```shell
-  $ torsocks flatpak install flathub org.telegram.desktop
+  $ app_id=org.telegram.desktop
+  $ torsocks flatpak install flathub $app_id
   ```
-  > This may take 30-45 minutes, depending on TOR connection speed
 
 
 * Create persistent Telegram application directory:
   ```shell
   $ persistence_dir=/live/persistence/TailsData_unlocked
-  $ app_id=org.telegram.desktop
   $ sudo mkdir -p $persistence_dir/$app_id
   $ sudo chown -R amnesia:amnesia $persistence_dir/$app_id
   $ chmod 700 $persistence_dir/$app_id 
   ```
 
-> You can launch your Flatpak application from the GNOME desktop using a menu item, which is represented by a .desktop file.
->
-> While `flatpak install` does generate a .desktop file, its location, along with the Icon and Exec fields, must be adjusted to ensure compatibility with Tails OS. This necessity stems from:
->   * The unique architecture of Tails OS: It doesn't define the `XDG_DATA_DIRS` environment variable, causing the Flatpak share directory (where the .desktop and icon files reside) to be omitted from the GNOME search path.
->   * Tails OS's practice of reinstalling additional software packages after each reboot: This process inhibits the GNOME desktop from locating the `flatpak run` command specified in the Exec field post-reboot, resulting in the .desktop file being overlooked.
-> 
-> By relocating the .desktop file to the appropriate directory and adjusting the Icon and Exec entries, the system will be able to display the correct menu item to launch your application. 
-> 
-> We've developed three utilities to simplify these tasks:
-> 
-> * `flatpak-copy-app-menu-item.sh` identifies the application's .desktop file and copies it to the right location in persistent storage.<br> 
->    The source .desktop file is first searched for in the persistent application directory and, if not found, in the Flatpak shared directory.
-> * `flatpak-update-menu-item-icon.sh` finds the application's icon file and updates the Icon entry with its path.<br> 
->   The icon file is primarily searched for in the persistent application directory and, if not found, in the Flatpak shared directory.
-> * `flatpak-update-menu-item-exec.sh` seeks to update the Exec entry to point to `start-$app_id.sh`.<br> 
->   This script tries to locate `start-$app_id.sh` in the persistent application directory. If the file doesn't exist, it's created based on the original .desktop file's Exec entry.
-
+---
+### Create desktop menu item
 
 * Copy application .desktop file to persistent local directory, which serves as a menu item:
   ```shell
-  $ $persistence_dir/flatpak/utils/flatpak-copy-app-menu-item.sh $app_id
+  $ $persistence_dir/flatpak/utils/flatpak-menu-item-copy.sh $app_id
   ```
 
-* Update Icon entry of the .desktop file:
+
+* Update `Icon` entry of the .desktop file:
   ```shell
-  $ $persistence_dir/flatpak/utils/flatpak-update-menu-item-icon.sh $app_id
+  $ $persistence_dir/flatpak/utils/flatpak-menu-item-update-icon.sh $app_id
   ```
 
-* Update Exec entry of the .desktop file:
+
+* Update `Exec` entry of the .desktop file:
   ```shell
-  $ $persistence_dir/flatpak/utils/flatpak-update-menu-item-icon.sh $app_id
+  $ $persistence_dir/flatpak/utils/flatpak-menu-item-update-exec.sh $app_id
   ```
 
 
-* To start Signal choose **Applications ▸ Other ▸ Signal**
+* Update .desktop file for compatibility with Tails OS:
+  ```shell
+  $ persistent_desktop_file="$persistence_dir/dotfiles/.local/share/applications/$app_id.desktop"
+  $ desktop-file-edit --remove-key="SingleMainWindow" $persistent_desktop_file
+  $ desktop-file-edit --remove-category="Network" $persistent_desktop_file 
+  ```
 
+
+* Force GNOME to recognize a change in the .desktop file to display the menu item:
+  ```shell
+  $ local_desktop_dir="/home/amnesia/.local/share/applications"
+  $ mv "$local_desktop_dir/$app_id.desktop" "$local_desktop_dir/$app_id.temp.desktop"
+  $ mv "$local_desktop_dir/$app_id.temp.desktop" "$local_desktop_dir/$app_id.desktop"
+  ```
 
 ---
+### Start Telegram
 
-### Update Signal
+* Choose **Applications ▸ Other ▸ Telegram**
+
+
+* Set Proxy server:
+  * Wait for Telegram Desktop welcome window to appear
+  * Click on the spinning icon in the bottom-left corner of the welcome window
+  * Choose **Use custom proxy**
+  * Enter Hostname **127.0.0.1**, port **9050**, and then click **Save**
+  * Wait for "**SOCKS5** 127.0.0.1:9050" to become online, then click **Close**
+  * Click **Start Messaging**
+  
+---
+
+### For the Future: Update Telegram
 
 * Open a _Terminal_ window:  choose **Applications ▸ Utilities ▸ Terminal**
 
 
 * Update the application:
   ```shell
-  torsocks flatpak update flathub org.signal.Signal
+  $ torsocks flatpak update org.telegram.desktop
   ```
-  
+
+ 
 ---
 
-### Remove Signal
+### Remove Telegram
 
 * Open a _Terminal_ window:  choose **Applications ▸ Utilities ▸ Terminal**
 
 
 * Remove the application:
   ```shell
-  torsocks flatpak uninstall flathub org.signal.Signal
+  $ app_id="org.telegram.desktop"
+  $ torsocks flatpak uninstall $app_id
   ```
 
 
 * Remove unused runtimes and SDK extensions:
   ```shell
-  torsocks flatpak uninstall --unused
+  $ torsocks flatpak uninstall --unused
   ```
   
 
-* Remove Signal menu item from the desktop menu:
+* Remove .desktop files representing the menu item:
   ```shell
-  rm $persistence_dir/dotfiles/.local/share/applications/signal.desktop
+  $ rm $persistence_dir/dotfiles/.local/share/applications/$app_id
+  $ rm /home/amnesia/.local/share/applications/$app_id
   ```
 
-* Remove Signal asset files:
+
+* Remove Telegram utils files:
   ```shell
-  rm -fr $persistence_dir/signal
+  $ sudo rm -fr $persistence_dir/$app_id
   ```
 
 --- 

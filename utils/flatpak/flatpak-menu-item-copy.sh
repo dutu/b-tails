@@ -44,7 +44,7 @@ create_app_menu_item() {
 
     # Create a symbolic link to it in the local .desktop directory
     ln -s "$persistent_desktop_dir/$app_id.desktop" "$local_desktop_dir/$app_id.desktop"
-    echo -e "Created $app_id.desktop file, representing the menu item for $app_id.\nThe menu item may still not be visible without updating it's entries."
+    echo -e "Created $app_id.desktop file, representing the menu item for application ID '$app_id'.\nThe menu item may still not be visible without updating .desktop file entries."
     exit 0
   else
     echo "Could not locate the source .desktop file for application ID '$app_id'. Exiting..."

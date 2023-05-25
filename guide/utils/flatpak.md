@@ -45,6 +45,8 @@ nav_order: 20
   $ chmod 700 $persistence_dir/flatpak 
   ```
 
+---
+### Install Flatpak Utils
 
 * Download and extract utility files:
   ```shell
@@ -61,17 +63,22 @@ nav_order: 20
   ```
 
 
-* Execute the scripts to set-up persistent Flatpak apps and make it autostart: 
+* Execute the scripts for setting up persistent Flatpak apps, and make it autostart: 
   ```shell
   $ $persistence_dir/flatpak/utils/flatpak-setup-persistent-apps.sh
   $ rsync -a $persistence_dir/flatpak/utils/flatpak-setup-persistent-apps.sh $persistence_dir/dotfiles/.config/autostart/amnesia.d/
   ```
 
 
+---
+### Add Flatpak repository
+
 * Add flatpak remote:
   ```shell
   $ torsocks flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   ```
+
+---
 
 {: .highlight }
 
@@ -91,8 +98,7 @@ nav_order: 20
     The source .desktop file is first searched for in the persistent application directory and, if not found, in the Flatpak shared directory.
 > * `flatpak-menu-item-update-icon.sh` finds the application's icon file and updates the Icon entry with its path.<br>
     The icon file is primarily searched for in the persistent application directory and, if not found, in the Flatpak shared directory.
-> * `flatpak-menu-item-update-exec.sh` seeks to update the Exec entry to point to `flatpak-run.sh`.<br>
+> * `flatpak-menu-item-update-exec.sh` updates the Exec entry to point to `flatpak-run.sh`.<br>
      This script creates the `flatpak-run.sh` script that launches the application based on the original .desktop file's Exec entry.
-
 
 ---

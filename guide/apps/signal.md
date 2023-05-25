@@ -76,7 +76,7 @@ For privacy reasons, the application is set-up so that the configuration is not 
 
 * Update the application:
   ```shell
-  torsocks flatpak update flathub org.signal.Signal
+  torsocks flatpak update org.signal.Signal
   ```
   
 ---
