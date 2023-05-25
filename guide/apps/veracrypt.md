@@ -43,8 +43,9 @@ VeraCrypt is free, open-source, and available for multiple platforms.
   > You can also confirm it by checking the official VeraCrypt download page at [https://www.veracrypt.fr/en/Downloads.html](https://www.veracrypt.fr/en/Downloads.html){:target="_blank" rel="noopener"}   
 
 
-* Download latest release of _Linux Generic Installer_ and associated _PGP signature_.
-  ```
+* Download latest release of _Linux Generic Installer_ and associated _PGP signature_:
+  ```shell
+  $ cd ~/Downloads
   $ wget https://launchpad.net/veracrypt/trunk/$VERSION/+download/veracrypt-$VERSION-setup.tar.bz2
   $ wget https://launchpad.net/veracrypt/trunk/$VERSION/+download/veracrypt-$VERSION-setup.tar.bz2.sig
   ```
@@ -52,7 +53,6 @@ VeraCrypt is free, open-source, and available for multiple platforms.
 
 * Download VeraCrypt PGP Public Key:
   ```shell
-  $ cd ~/Downloads
   $ wget https://www.idrix.fr/VeraCrypt/VeraCrypt_PGP_public_key.asc
   ```
 
@@ -135,24 +135,25 @@ Up to this point VeraCrypt is installed in RAM and disappears when you restart T
   $ sudo mkdir -p $persistence_dir/veracrypt
   $ sudo chown -R amnesia:amnesia $persistence_dir/veracrypt
   $ chmod 700 $persistence_dir/veracrypt 
-  $ rsync -a ~/VeraCrypt/ $persistence_dir/veracrypt/
+  $ rsync -av ~/VeraCrypt/ $persistence_dir/veracrypt/
   ```
 
   
 * Add VeraCrypt menu item to the desktop menu:
   ```shell
-  $ tar -xvf /tmp/veracrypt_${VERSION}_amd64.tar.gz usr/share/applications/veracrypt.desktop -O > $persistence_dir/dotfiles/.local/share/applications/veracrypt.desktop
+  $ persistent_desktop_file=$persistence_dir/dotfiles/.local/share/applications/veracrypt.desktop
+  $ tar -xvf /tmp/veracrypt_${VERSION}_amd64.tar.gz usr/share/applications/veracrypt.desktop -O > $persistent_desktop_file
   $ tar -xvf /tmp/veracrypt_${VERSION}_amd64.tar.gz usr/share/pixmaps/veracrypt.xpm -O > $persistence_dir/veracrypt/veracrypt.xpm
-  $ sed -i 's|Exec=.*|Exec=/live/persistence/TailsData_unlocked/veracrypt/veracrypt|' $persistence_dir/dotfiles/.local/share/applications/veracrypt.desktop
-  $ sed -i 's|Icon=.*|Icon=/live/persistence/TailsData_unlocked/veracrypt/veracrypt.xpm|' $persistence_dir/dotfiles/.local/share/applications/veracrypt.desktop
+  $ desktop-file-edit --set-icon="$persistence_dir/veracrypt/veracrypt.xpm" $persistent_desktop_file
+  $ desktop-file-edit --set-key="Exec" --set-value="$persistence_dir/veracrypt/veracrypt" $persistent_desktop_file
+  $ desktop-file-edit --remove-category="Utility" $persistent_desktop_file 
+  $ ln -s $persistence_dir/dotfiles/.local/share/applications/veracrypt.desktop /home/amnesia/.local/share/applications
   ```
 
+---
+### Start VeraCrypt
 
-> The menu item will be visible after Tails reboot.
-
-
-* To start VeraCrypt choose **Applications ▸ Other ▸ VeraCrypt**
-
+* Choose **Applications ▸ Other ▸ VeraCrypt**
 
 ---
 ### For the Future: Update VeraCrypt
