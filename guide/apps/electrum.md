@@ -44,9 +44,9 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
   $ wget https://download.electrum.org/$VERSION/electrum-$VERSION-x86_64.AppImage.asc
   ```
 
-* Download archive containing udev rules for supported hardware wallet devices, and signature (`.asc`):
+
+* Download Electrum archive and signature (`.asc`):
   ```shell
-  $ cd ~/Downloads
   $ wget https://download.electrum.org/$VERSION/Electrum-$VERSION.tar.gz
   $ wget https://download.electrum.org/$VERSION/Electrum-$VERSION.tar.gz.asc
   ```
@@ -56,9 +56,9 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
   ```shell
   $ wget https://raw.githubusercontent.com/spesmilo/electrum/master/pubkeys/ThomasV.asc
   $ gpg --import ThomasV.asc
-  > Good signature from "Thomas Voegtlin (https://electrum.org) <thomasv@electrum.org>
-  > ...
-  > Primary key fingerprint: 6694 D8DE 7BE8 EE56 31BE  D950 2BD5 824B 7F94 70E6
+  > gpg: key 0x2BD5824B7F9470E6: public key "Thomas Voegtlin (https://electrum.org) <thomasv@electrum.org>" imported
+  > gpg: Total number processed: 1
+  > gpg:               imported: 1
   ```
 
 
@@ -91,15 +91,17 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
 
 * Copy the application file, and make it executable:
   ```shell
+  $ rm -f $persistence_dir/electrum/*.AppImage
   $ cp electrum-$VERSION-x86_64.AppImage $persistence_dir/electrum
   $ chmod +x $persistence_dir/electrum/electrum-$VERSION-x86_64.AppImage
   ```
 
 
-* Extract and copy udev rules:
+* Extract and copy udev rules needed for the HW wallet devices:
   ```shell
-  $ tar -xjf Electrum-$VERSION.tar.gz
-  $ rsync -a Electrum-$VERSION/contrib/udev/ $persistence_dir/electrum/udev/
+  $ tar -xzvf Electrum-$VERSION.tar.gz
+  $ rm -fr $persistence_dir/electrum/udev
+  $ rsync -av Electrum-$VERSION/contrib/udev/ $persistence_dir/electrum/udev/
   ```
 
 
@@ -148,7 +150,13 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
   >  and add them to the new `config` file.
 
 
-* Copy Electrum config and script files to application directory:
+* Copy Electrum config and script files to persistent application directory:
+  > The following files are copied to Electrum persistent directory `$persistence_dir/electrum`:
+  > * `config` - Persistent electrum configuration that has been reviewed at previous step.
+  > * `electrum_start.sh` - This script starts Electrum application. It first checks if udev rules needed for the HW wallet devices have been applied, and if not applies them.
+  > 
+  > Please inspect the files carefully to ensure they don't contain any harmful content.
+
   ```shell
   $ rsync -av electrum-assets/ $persistence_dir/electrum/
   ```
@@ -156,33 +164,45 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
 
 * Make scrips executable:
   ```shell
-  $ find $persistence_dir/electrum -type f -name "*.sh" -exec chmod +x {} \;
+  $ chmod +x $persistence_dir/electrum/electrum_start.sh
   ```
 
 
-* Add Electrum menu item to the desktop menu:
+* Copy application .desktop file to persistent local directory, which serves as a menu item:
   ```shell
+  $ persistent_desktop_file=$persistence_dir/dotfiles/.local/share/applications/Electrum.desktop
   $ mkdir -p $persistence_dir/dotfiles/.local/share/applications
-  $ cp electrum-assets/Electrum.desktop $persistence_dir/dotfiles/.local/share/applications
-  $ cp Electrum-$VERSION/electrum/gui/icons/electrum.png $persistence_dir/electrum/
+  $ cp Electrum-$VERSION/electrum.desktop $persistent_desktop_file
   ```
 
-> The menu item will be visible after Tails reboot.
+
+* Update `Icon` entry of the .desktop file to point to Electrum icon file:
+  ```shell
+  $ cp Electrum-$VERSION/electrum/gui/icons/electrum.png $persistence_dir/electrum/
+  $ desktop-file-edit --set-icon="$persistence_dir/electrum/electrum.png" $persistent_desktop_file
+  ```
 
 
-* To start Electrum choose **Applications ▸ Other ▸ Electrum**.
+* Update `Exec` entry of the .desktop file to run `electrum_start.sh` instead of starting electrum directly:
+  ```shell
+  $ sed -i 's|Exec=\(electrum.*\)|Exec=/bin/bash -c "$persistence_dir/electrum/electrum_start.sh \1"|' $persistent_desktop_file
+  ```
 
 
-* Restart Tails and unlock the Persistent Storage.
+* Make the menu item visible: 
+  ```shell
+  ln -s $persistence_dir/dotfiles/.local/share/applications/Electrum.desktop /home/amnesia/.local/share/applications
+  ```
 
+---
+### Start Electrum
 
+* Choose **Applications ▸ Other ▸ Electrum**.
+
+---
 ### For the Future: Update Electrum
 
 * Follow the steps in section [Install the latest version of Electrum](#install-the-latest-version-of-electrum).
-
-
-* Optionally, execute the steps in sections [Add udev rules](#add-udev-rules-to-support-ledger-hw-wallet-devices). 
-
 
 ---
 ### Remove installation of latest version of Electrum
