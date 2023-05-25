@@ -19,12 +19,13 @@ nav_order: 20
 
 [Flatpak](https://www.flatpak.org/){:target="_blank" rel="noopener"} is an open-source software utility that provides a sandboxed environment for distributing and running Linux applications.
 
-
 ---
 ### Install Flatpak
 
 * Make sure **Tails Autostart** utility has been installed. See [Tails Autostart](/guide/utils/tails_autostart.html).
 
+
+#### Install Flatpak package
 
 * Open a _Terminal_ window:  choose **Applications ▸ Utilities ▸ Terminal**
 
@@ -45,8 +46,8 @@ nav_order: 20
   $ chmod 700 $persistence_dir/flatpak 
   ```
 
----
-### Install Flatpak Utils
+
+#### Install Flatpak Utils
 
 * Download and extract utility files:
   ```shell
@@ -70,15 +71,13 @@ nav_order: 20
   ```
 
 
----
-### Add Flatpak repository
+#### Add Flatpak repository
 
 * Add flatpak remote:
   ```shell
   $ torsocks flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   ```
 
----
 
 {: .highlight }
 
@@ -102,3 +101,22 @@ nav_order: 20
      This script creates the `flatpak-run.sh` script that launches the application based on the original .desktop file's Exec entry.
 
 ---
+### For the future: Update Flatpak utils
+
+* Execute the steps in section [Remove the Flatpak Utils](#remove-the-flatpak-utils).
+
+* Execute the steps in section [Install Flatpak Utils](#install-flatpak-utils).
+
+---
+### Remove the Flatpak Utils
+
+* Remove the scripts for setting up persistent Flatpak apps from autostart: 
+  ```shell
+  $ persistence_dir=/live/persistence/TailsData_unlocked
+  $ rm $persistence_dir/dotfiles/.config/autostart/amnesia.d/flatpak-setup-persistent-apps.sh
+  ```
+
+* Remove Flatpak utils scripts
+  ```shell
+  $ rm -fr $persistence_dir/flatpak/utils
+  ```

@@ -38,7 +38,7 @@ Although possible, the process for setting up a persistent configuration isn't c
 
 * Install Telegram:
   ```shell
-  $ app_id=org.telegram.desktop
+  $ app_id="org.telegram.desktop"
   $ torsocks flatpak install flathub $app_id
   ```
 
@@ -94,10 +94,10 @@ Although possible, the process for setting up a persistent configuration isn't c
 
 
 * Set Proxy server:
-  * Wait for Telegram Desktop welcome window to appear
+  * Wait for _Telegram Desktop_ welcome window to appear
   * Click on the spinning icon in the bottom-left corner of the welcome window
   * Choose **Use custom proxy**
-  * Enter Hostname **127.0.0.1**, port **9050**, and then click **Save**
+  * Enter Hostname `127.0.0.1`, port `9050`, and then click **Save**
   * Wait for "**SOCKS5** 127.0.0.1:9050" to become online, then click **Close**
   * Click **Start Messaging**
   
@@ -123,8 +123,7 @@ Although possible, the process for setting up a persistent configuration isn't c
 
 * Remove the application:
   ```shell
-  $ app_id="org.telegram.desktop"
-  $ torsocks flatpak uninstall $app_id
+  $ torsocks flatpak uninstall org.telegram.desktop
   ```
 
 
@@ -136,14 +135,15 @@ Although possible, the process for setting up a persistent configuration isn't c
 
 * Remove .desktop files representing the menu item:
   ```shell
-  $ rm $persistence_dir/dotfiles/.local/share/applications/$app_id
-  $ rm /home/amnesia/.local/share/applications/$app_id
+  $ persistence_dir=/live/persistence/TailsData_unlocked
+  $ rm $persistence_dir/dotfiles/.local/share/applications/org.telegram.desktop
+  $ rm /home/amnesia/.local/share/applications/org.telegram.desktop
   ```
 
 
 * Remove Telegram utils files:
   ```shell
-  $ sudo rm -fr $persistence_dir/$app_id
+  $ sudo rm -fr $persistence_dir/org.telegram.desktop
   ```
 
 --- 
