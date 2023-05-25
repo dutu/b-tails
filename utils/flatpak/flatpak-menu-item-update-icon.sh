@@ -8,31 +8,34 @@
 #   - the Flatpak shared directory
 # If a new icon is found, the Icon entry in the .desktop file is replaced with the new icon's path.
 
-# Define the persistence directory
+# Error codes
+ERR_NO_ARGS=5
+ERR_NOT_AMNESIA=6
+ERR_NO_ICON_FILE=2
+ERR_NO_ICON_ENTRY=3
+ERR_NO_DESKTOP_FILE=4
+
+# Flatpak application id is first argument
+app_id="$1"
+
+# Define the persistence directories and file paths
 persistence_dir="/live/persistence/TailsData_unlocked"
 persistent_desktop_dir="$persistence_dir/dotfiles/.local/share/applications"
-
-# Define the Flatpak applications directory and local desktop directory
-flatpak_share_dir="/home/amnesia/.local/share/flatpak/exports/share"
-local_desktop_dir="/home/amnesia/.local/share/applications"
-app_id="$1"
+persistent_desktop_path="$persistent_desktop_dir/$app_id.desktop"
+flatpak_share_dir="$persistence_dir/flatpak/exports/share"
 
 # Function to update the Flatpak app's icon
 update_flatpak_app_icon() {
-  local_desktop_path="$persistent_desktop_dir/$app_id.desktop"
   # Check if the .desktop file exists
-  if [[ ! -f $local_desktop_path ]]; then
-    echo "Error: $local_desktop_path does not exist for app id $app_id."
-    exit 2
+  if [[ ! -f $persistent_desktop_path ]]; then
+    echo "Error: '$persistent_desktop_path' does not exist for app id $app_id."
+    exit $ERR_NO_DESKTOP_FILE
   fi
 
-  # Extract the old icon path from the .desktop file
-  old_icon=$(grep -Po '^Icon=\K.*' "$local_desktop_path")
-
-  # Check if the old icon path matches the app id
-  if [[ "$old_icon" != "$app_id" ]]; then
-    echo "Error: Icon entry does not match the app id $app_id."
-    exit 1
+  # Check if there is any icon entry that matches the app id
+  if ! grep -q "Icon=$app_id" "$persistent_desktop_path"; then
+    echo "Error: No 'Icon=$app_id' entries found."
+    exit $ERR_NO_ICON_ENTRY
   fi
 
   # Check if the icon file exists in the persistence directory
@@ -48,8 +51,8 @@ update_flatpak_app_icon() {
     # Icon sizes to search for, in descending order of preference
     for size in 128x128 64x64 48x48 32x32 16x16; do
       for ext in .png .svg .xpm .ico; do
-        if [[ -f "$flatpak_share_dir/hicolor/$size/apps/$app_id$ext" ]]; then
-          new_icon="$flatpak_share_dir/hicolor/$size/apps/$app_id$ext"
+        if [[ -f "$flatpak_share_dir/icons/hicolor/$size/apps/$app_id$ext" ]]; then
+          new_icon="$flatpak_share_dir/icons/hicolor/$size/apps/$app_id$ext"
           break 2  # Break out of both loops
         fi
       done
@@ -58,28 +61,26 @@ update_flatpak_app_icon() {
 
   # If the new icon is found
   if [[ -n $new_icon ]]; then
-    # Replace the old icon path with the new one in the .desktop file
-    sed -i "s|^Icon=.*|Icon=$new_icon|" "$local_desktop_path"
-    # Force GNOME to recognize a change in the .desktop file to refresh the menu item
-    mv "$local_desktop_path" "$local_desktop_dir/$app_id.temp.desktop"
-    mv "$local_desktop_dir/$app_id.temp.desktop" "$local_desktop_path"
-    echo "New Icon=$new_icon for app id $app_id."
+    # Replace the old icon path with the new one in the .desktop file, only if the icon matches the app id
+    sed -i "s|^Icon=$app_id|Icon=$new_icon|" "$persistent_desktop_path"
+    echo "Replaced 'Icon=$app_id' with 'Icon=$new_icon'."
   else
-    echo "Error: New icon not found for app id $app_id."
+    echo "Error: Icon file not found for app id $app_id."
+    exit $ERR_NO_ICON_FILE
   fi
 }
 
 # Ensure application ID has been passed to the script
 if [ $# -eq 0 ]; then
   echo "No arguments supplied. Please provide a flatpak application ID."
-  exit 1
+  exit $ERR_NO_ARGS
 fi
 
 # Ensure we are running as 'amnesia'
 if test "$(whoami)" != "amnesia"; then
   echo "You must run this program as 'amnesia' user."
-  exit 1
+  exit $ERR_NOT_AMNESIA
 fi
 
-# Call the function with the first command line argument
+# Call the function to update the Icon entry
 update_flatpak_app_icon

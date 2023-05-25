@@ -5,27 +5,23 @@
 # If this custom file does not exist, the script defaults to using the .desktop file from the Flatpak application's own directory.
 # A copy of the source .desktop file is placed in the persistent dotfile directory, and a corresponding symbolic link is created in the local directory.
 
-# Define the persistence directory
-persistence_dir=/live/persistence/TailsData_unlocked
+# Error codes
+ERR_NO_ARGS=5
+ERR_NOT_AMNESIA=6
+ERR_NO_DESKTOP_FILE=4
 
-# Define the Flatpak applications directory and the .desktop directory for menu items
-flatpak_share_dir="/home/amnesia/.local/share/flatpak/exports/share"
-local_dir="/home/amnesia/.local/share/applications"
-persistent_local_dir="$persistence_dir/dotfiles/.local/share/applications"
+# Flatpak application id is first argument
+app_id="$1"
 
-# Logs a message to the terminal or the system log, depending on context
-log() {
-  if [ -t 1 ]; then
-    # If File descriptor 1 (stdout) is open and refers to a terminal
-    echo "$1"
-  else
-    # If stdout is not a terminal (maybe it's a pipe, a file, or /dev/null)
-    logger "$1"
-  fi
-}
+# Define the persistence directories and file paths
+persistence_dir="/live/persistence/TailsData_unlocked"
+persistent_desktop_dir="$persistence_dir/dotfiles/.local/share/applications"
+flatpak_share_dir="$persistence_dir/flatpak/exports/share"
+
+# Define local desktop directory
+local_desktop_dir="/home/amnesia/.local/share/applications"
 
 create_app_menu_item() {
-  app_id=$1
   # Determine the source of the .desktop file for the app
   if [[ -f "$persistence_dir/$app_id/$app_id.desktop" ]]; then
     # If a custom desktop file exists in the persistence directory use this as source
@@ -37,36 +33,36 @@ create_app_menu_item() {
 
   # Check if the source .desktop file has been located
   if [[ -f $desktop_file_path ]]; then
-    # Create a copy of it in the persistent local .desktop directory
-    cp "$desktop_file_path" "$persistent_local_dir/$app_id.desktop"
+    # Create a copy of it in the persistent .desktop directory
+    cp "$desktop_file_path" "$persistent_desktop_dir/$app_id.desktop"
 
     # Check if a symbolic link or file already exists in local .desktop directory
-    if [[ -e "$local_dir/$app_id.desktop" ]]; then
+    if [[ -e "$local_desktop_dir/$app_id.desktop" ]]; then
       # If it does, delete it
-      rm "$local_dir/$app_id.desktop"
+      rm "$local_desktop_dir/$app_id.desktop"
     fi
 
     # Create a symbolic link to it in the local .desktop directory
-    ln -s "$persistent_local_dir/$app_id.desktop" "$local_dir/$app_id.desktop"
-    log "Created menu item for $app_id."
+    ln -s "$persistent_desktop_dir/$app_id.desktop" "$local_desktop_dir/$app_id.desktop"
+    echo -e "Created $app_id.desktop file, representing the menu item for $app_id.\nThe menu item may still not be visible without updating it's entries."
     exit 0
   else
-    log "Could not locate the source .desktop file for application ID '$app_id'. Exiting..."
-    exit 2
+    echo "Could not locate the source .desktop file for application ID '$app_id'. Exiting..."
+    exit $ERR_NO_DESKTOP_FILE
   fi
 }
 
 # Ensure application ID has been passed to the script
 if [ $# -eq 0 ]; then
-  log "No arguments supplied. Please provide a flatpak application ID."
-  exit 1
+  echo "No arguments supplied. Please provide a flatpak application ID."
+  exit $ERR_NO_ARGS
 fi
 
 # Ensure we are running as 'amnesia'
 if test "$(whoami)" != "amnesia"; then
-  log "You must run this program as 'amnesia' user."
-  exit 1
+  echo "You must run this program as 'amnesia' user."
+  exit $ERR_NOT_AMNESIA
 fi
 
-# Call the function with the first command line argument
-create_app_menu_item "$1"
+# Call the function
+create_app_menu_item

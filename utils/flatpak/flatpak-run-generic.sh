@@ -4,6 +4,9 @@
 # Firstly, the verifies the availability of the Flatpak package. If not available, it terminates.
 # The script provides a designated section where users can insert additional commands or settings to be configured before launching the Flatpak application (e.g., setting a proxy server).
 
+# Define the persistence directories and file paths
+persistence_dir="/live/persistence/TailsData_unlocked"
+
 # Logs a message to the terminal or the system log, depending on context.
 # The first argument is the type of message ("info"|"warning"|"error"|"question"), the second argument is the actual message to log.
 log() {
@@ -17,7 +20,7 @@ log() {
 }
 
 # Run the flatpak-installation-check.sh script and capture the exit code
-./flatpak-installation-check.sh
+$persistence_dir/flatpak-installation-check.sh
 exit_code=$?
 
 # If the exit code is not 0, exit with the same code
