@@ -25,6 +25,17 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
 ---
 ### Install the latest version of Electrum
 
+{: .important }
+> Electrum's persistent storage is set at `/live/persistence/TailsData_unlocked/electrum`.
+>
+> We link the default `wallets` directory to this storage, independent of the "Electrum Bitcoin Wallet" feature's status in Persistent Storage.<br>
+> If this feature is ON, Electrum uses the `config` file, preserving configuration changes between reboots.<br>
+> If it's OFF, the `config.default` file is used and configuration changes are reset post-reboot.
+
+
+* Make sure **Tails Autostart** utility has been installed. See [Tails Autostart](/guide/utils/tails_autostart.html).
+
+
 * Open a _Terminal_ window:  choose **Applications ▸ Utilities ▸ Terminal**
 
 
@@ -105,16 +116,16 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
   ```
 
 
-* Download and extract Electrum asset files:
+* Download and extract utility files:
   ```shell
-  $ wget https://raw.githubusercontent.com/dutu/b-tails/master/resources/electrum-assets.tar.gz
-  $ tar -xzvf electrum-assets.tar.gz
+  $ wget https://raw.githubusercontent.com/dutu/b-tails/master/utils/electrum-utils.tar.gz
+  $ tar -xzvf electrum-utils.tar.gz
   ```
 
 
-* Change the new default `config` file, if needed:
+* Change the new default `config.default` file, if needed:
   ```shell
-  $ nano electrum-assets/config
+  $ nano electrum-utils/config.default
   ```
   New default `config` is:
   ```json
@@ -138,39 +149,48 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
   }
   ```
 
-  > * `"server"` -> default value is a secure Electrum server. You can replace it with your own Electrum server address, or you can remove it entirely to connect to a random Electrum server. If removed, the parameter `oneserver` should also be removed.
+  > * `"server"` -> default value is a secure and privacy focused Electrum server. You can replace it with your own Electrum server address, or you can remove it entirely to connect to a random Electrum server. If removed, the parameter `oneserver` should also be removed.
   > * `"oneserver": true`  -> connect to one Electrum server only (which is the server specified with parameter `server`).
   > * `"auto_connect": false` -> stick with current server even if it is lagging. When changed to `true`, every time the Electrum client receives a block header from any server, it checks if the current server is lagging, and if so, it switches to one that has the best block. "lagging" is defined to be missing at least two blocks.
 
   {: .important }
-  > If you are upgrading Electrum, you may want to check the existing settings
+  > If you are upgrading Electrum, you may want to update the file checking existing `config` and `config.default` at `/live/persistence/TailsData_unlocked/electrum`: 
   > ```shell
-  > $ cat $persistence_dir/electrum/config
+  > $ cat /live/persistence/TailsData_unlocked/electrum/config
+  > $ cat /live/persistence/TailsData_unlocked/electrum/config.default
   > ```
-  >  and add them to the new `config` file.
 
 
-* Copy Electrum config and script files to persistent application directory:
-  > The following files are copied to Electrum persistent directory `$persistence_dir/electrum`:
-  > * `config` - Persistent electrum configuration that has been reviewed at previous step.
-  > * `electrum_start.sh` - This script starts Electrum application. It first checks if udev rules needed for the HW wallet devices have been applied, and if not applies them.
+* Copy `default.config` and script files to persistent storage:
+  > The following files are copied to persistent storage:
+  > * `config.default` - default configuration that has been reviewed at previous step.
+  > * `electrum-config-setup.sh` - script to connect `wallets` directory to persistent storage and to make Electrum use persistent `config` or default `config.default`. 
+  > * `electrum-start.sh` - script to start Electrum application. It first checks if udev rules needed for the HW wallet devices have been applied, and if not applies them.
   > 
   > Please inspect the files carefully to ensure they don't contain any harmful content.
 
   ```shell
-  $ rsync -av electrum-assets/ $persistence_dir/electrum/
+  cp electrum-utils/* $persistence_dir/electrum
   ```
 
 
 * Make scrips executable:
   ```shell
   $ chmod +x $persistence_dir/electrum/electrum_start.sh
+  $ chmod +x $persistence_dir/electrum/electrum-config-setup.sh
   ```
 
 
-* Copy application .desktop file to persistent local directory, which serves as a menu item:
+* Execute `electrum-config-setup.sh` to set up Electrum configuration, and make it autostart:
   ```shell
-  $ persistent_desktop_file=$persistence_dir/dotfiles/.local/share/applications/Electrum.desktop
+  $ $persistence_dir/electrum/electrum-config-setup.sh
+  $ cp $persistence_dir/electrum/electrum-config-setup.sh $persistence_dir/dotfiles/.config/autostart/amnesia.d/
+  ```
+
+
+* Copy application .desktop file to persistent local directory, which serves as a desktop menu item:
+  ```shell
+  $ persistent_desktop_file=$persistence_dir/dotfiles/.local/share/applications/electrum.desktop
   $ mkdir -p $persistence_dir/dotfiles/.local/share/applications
   $ cp Electrum-$VERSION/electrum.desktop $persistent_desktop_file
   ```
@@ -183,19 +203,30 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
   ```
 
 
-* Update `Exec` entry of the .desktop file to run `electrum_start.sh` instead of starting electrum directly:
+* Update `Exec` entry of the .desktop file to run `electrum_start.sh`:
   ```shell
-  $ sed -i 's|Exec=\(electrum.*\)|Exec=/bin/bash -c "$persistence_dir/electrum/electrum_start.sh \1"|' $persistent_desktop_file
+  $ sed -i "s|Exec=electrum \(.*\)|Exec=/bin/bash -c \"$persistence_dir/electrum/electrum_start.sh \1\"|" $persistent_desktop_file
   ```
 
 
-* Make the menu item visible: 
+* Make the menu item visible in **Applications ▸ Other**:
   ```shell
-  ln -s $persistence_dir/dotfiles/.local/share/applications/Electrum.desktop /home/amnesia/.local/share/applications
+  $ desktop-file-edit --remove-category="Network" $persistent_desktop_file 
+  $ ln -s $persistence_dir/dotfiles/.local/share/applications/Electrum.desktop /home/amnesia/.local/share/applications
   ```
 
 ---
 ### Start Electrum
+
+> Electrum's persistent storage is set at `/live/persistence/TailsData_unlocked/electrum`.
+>
+> Default `wallets` directory is linked to this storage, independent of the "Electrum Bitcoin Wallet" feature's status in Persistent Storage.<br>
+> If this feature is ON, Electrum uses the `config` file, preserving configuration changes between reboots.<br>
+> If it's OFF, the `config.default` file is used and configuration changes are reset post-reboot.
+
+> Electrum config includes reference to the last wallet used.<br>
+> If, for privacy, after Tails reboots you don't want Electrum to show this file as recently open, turn off "Electrum Bitcoin Wallet" feature in Persistent Storage.  
+
 
 * Choose **Applications ▸ Other ▸ Electrum**.
 

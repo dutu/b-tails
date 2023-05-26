@@ -21,10 +21,10 @@ function apply_udev_rules {
 rules_file="/etc/udev/rules.d/51-coinkite.rules"
 if [ ! -e "$rules_file" ]; then
   # If not, run 'apply_udev_rules' function with superuser privileges
-  pkexec bash -c "$(declare -f apply_udev_rules); apply_udev_rules"
+  pkexec bash -c "install_dir=$install_dir; $(declare -f apply_udev_rules); apply_udev_rules"
 fi
 
 # Get the electrum AppImage file path
 electrum_AppImage=$(find ${install_dir}/*.AppImage | tail -n 1)
-# start electrum with '--forgetconfig' and all other parameters passed to this script
-${electrum_AppImage} --forgetconfig "$@"
+# start electrum using '~/.electrum' directory and all other parameters passed to this script
+${electrum_AppImage} --dir /home/amnesia/.electrum "$@"
