@@ -14,19 +14,25 @@
 persistence_dir=/live/persistence/TailsData_unlocked
 install_dir=$persistence_dir/electrum
 
+# Define the path of the user's Electrum config file and wallets directory
 config_file=/home/amnesia/.electrum/config
 wallets_dir=/home/amnesia/.electrum/wallets
 
+# Define the path of the skeleton config file (the skeleton file provides default settings that are copied to new user directories)
+skel_config=/etc/skel/.electrum/config
+
 mkdir -p $install_dir/wallets
-# Check if wallets directory exists
+# Check if user's wallets directory does not exists
 if [ ! -d "$wallets_dir" ]; then
-  # If not, link the 'wallets_dir'
+  #
+  # Link the 'wallets_dir'
   ln -s $install_dir/wallets $wallets_dir
 fi
 
 mkdir -p /home/amnesia/.electrum
-# Check if config file exists
-if [ ! -e "$config_file" ]; then
-  # If not, copy the 'config.default'
+
+# Check if the user's Electrum config is identical to the skeleton config file
+if cmp -s "$config_file" "$skel_config"; then
+  # Copy the 'config.default' to the user's config file, overwriting the the skeleton config file
   cp $install_dir/config.default $config_file
 fi

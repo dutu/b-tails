@@ -170,21 +170,23 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
   > Please inspect the files carefully to ensure they don't contain any harmful content.
 
   ```shell
-  cp electrum-utils/* $persistence_dir/electrum
+  $ cp electrum-utils/config.default $persistence_dir/electrum
+  $ rm -fr $persistence_dir/electrum/utils
+  $ rsync -av electrum-utils/ $persistence_dir/electrum/utils
   ```
 
 
 * Make scrips executable:
   ```shell
-  $ chmod +x $persistence_dir/electrum/electrum_start.sh
-  $ chmod +x $persistence_dir/electrum/electrum-config-setup.sh
+  $ chmod +x $persistence_dir/electrum/utils/electrum-start.sh
+  $ chmod +x $persistence_dir/electrum/utils/electrum-config-setup.sh
   ```
 
 
 * Execute `electrum-config-setup.sh` to set up Electrum configuration, and make it autostart:
   ```shell
-  $ $persistence_dir/electrum/electrum-config-setup.sh
-  $ cp $persistence_dir/electrum/electrum-config-setup.sh $persistence_dir/dotfiles/.config/autostart/amnesia.d/
+  $ $persistence_dir/electrum/utils/electrum-config-setup.sh
+  $ cp $persistence_dir/electrum/utils/electrum-config-setup.sh $persistence_dir/dotfiles/.config/autostart/amnesia.d/
   ```
 
 
@@ -205,14 +207,14 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
 
 * Update `Exec` entry of the .desktop file to run `electrum_start.sh`:
   ```shell
-  $ sed -i "s|Exec=electrum \(.*\)|Exec=/bin/bash -c \"$persistence_dir/electrum/electrum_start.sh \1\"|" $persistent_desktop_file
+  $ sed -i "s|Exec=electrum \(.*\)|Exec=$persistence_dir/electrum/utils/electrum-start.sh \1|" $persistent_desktop_file
   ```
 
 
 * Make the menu item visible in **Applications ▸ Other**:
   ```shell
   $ desktop-file-edit --remove-category="Network" $persistent_desktop_file 
-  $ ln -s $persistence_dir/dotfiles/.local/share/applications/Electrum.desktop /home/amnesia/.local/share/applications
+  $ ln -s $persistence_dir/dotfiles/.local/share/applications/electrum.desktop /home/amnesia/.local/share/applications
   ```
 
 ---
@@ -225,7 +227,7 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
 > If it's OFF, the `config.default` file is used and configuration changes are reset post-reboot.
 
 > Electrum config includes reference to the last wallet used.<br>
-> If, for privacy, after Tails reboots you don't want Electrum to show this file as recently open, turn off "Electrum Bitcoin Wallet" feature in Persistent Storage.  
+> If, for privacy, you don't want Electrum to show after this file as recently open after reboot, turn off "Electrum Bitcoin Wallet" feature in Persistent Storage.  
 
 
 * Choose **Applications ▸ Other ▸ Electrum**.
@@ -241,15 +243,38 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
 * Open a _Terminal_ window:  choose **Applications ▸ Utilities ▸ Terminal**
 
 
-* Remove the application:
+* Remove the application and util files:
   ```shell
-  persistence_dir=/live/persistence/TailsData_unlocked
-  sudo rm -fr $persistence_dir/electrum
+  $ persistence_dir=/live/persistence/TailsData_unlocked
+  $ rm -f $persistence_dir/electrum/*.AppImage
+  $ rm -f $persistence_dir/electrum/config.default
+  $ rm -fr $persistence_dir/electrum/utils
+  $ rm -fr $persistence_dir/electrum/udev
   ```
 
 
-* Remove Electrum menu item from the desktop menu:
+* Remove autostart script:
   ```shell
-  rm $persistence_dir/dotfiles/.local/share/applications/Electrum.desktop
+  $ rm -f $persistence_dir/dotfiles/.config/autostart/amnesia.d/electrum-config-setup.sh
+  ```
+
+  
+* Remove the files for the menu item:
+  ```shell
+  $ rm -f $persistence_dir/dotfiles/.local/share/applications/electrum.desktop
+  $ rm -f /home/amnesia/.local/share/applications/electrum.desktop
+  $ rm -f $persistence_dir/electrum/electrum.png
+  ```
+
+  
+* Remove `~/.electrum/wallets`, if it is a symbolic link to directory to persistent storage:
+  ```shell
+  $ [ -h ~/.electrum/wallets ] && rm ~/.electrum/wallets || echo "~/.electrum/wallets is not a symlink"
+  ```
+
+
+* Remove `~/.electrum/config` if it's not the same file as `$persistence_dir/electrum/config` 
+  ```shell
+  [ ~/.electrum/config -ef $persistence_dir/electrum/config ] || rm ~/.electrum/config
   ```
 --- 
