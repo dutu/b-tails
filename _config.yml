@@ -30,6 +30,7 @@ callouts:
     color: red
 
 url: https://dutu.github.io/b-tails
+baseurl: "/b-tails"
 
 aux_links:
   Issues / Knowledge Base: https://github.com/dutu/b-tails/issues

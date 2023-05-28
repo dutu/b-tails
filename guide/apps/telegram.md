@@ -19,8 +19,8 @@ nav_order: 40
 
 [Telegram](https://telegram.org/){:target="_blank" rel="noopener"} is an instant messaging app providing voice, video, and text communications, along with secure end-to-end encrypted messaging, file sharing, and a variety of community features like groups and channels.
 
+![telegram_welcome_screen.png](../../images/telegram_welcome_screen.png)
 
-![telegram_welcome_screen.png.png](/images/telegram_welcome_screen.png)
 
 {: .highlight }
 For privacy, the application's configuration is not persistent and resets with every Tails reboot.<br> 
@@ -30,7 +30,7 @@ Although possible, the process for setting up a persistent configuration isn't c
 ---
 ### Install Telegram
 
-* Make sure **Flatpak** has been installed. See [Flatpak](/guide/utils/flatpak.html).
+* Make sure **Flatpak** has been installed. See [Flatpak](../Futils/flatpak.html)).
 
 
 * Open a _Terminal_ window:  choose **Applications ▸ Utilities ▸ Terminal**
