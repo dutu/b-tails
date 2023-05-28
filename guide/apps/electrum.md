@@ -33,7 +33,7 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
 > If it's OFF, the `config.default` file is used and configuration changes are reset post-reboot.
 
 
-* Make sure **Tails Autostart** utility has been installed. See [Tails Autostart](/guide/utils/tails_autostart.html).
+* Make sure **Tails Autostart** utility has been installed. See [Tails Autostart](../utils/tails_autostart.html).
 
 
 * Open a _Terminal_ window:  choose **Applications ▸ Utilities ▸ Terminal**

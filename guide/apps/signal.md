@@ -19,8 +19,7 @@ nav_order: 30
 
 [Signal](https://signal.org/){:target="_blank" rel="noopener"} is a privacy-focused messaging application that offers end-to-end encryption for secure text messages, voice calls, and video calls.
 
-
-![signal.png](/images/signal.png)
+![signal.png](../../images/signal.png)
 
 {: .highlight }
 For privacy, the application's configuration is not persistent and resets with every Tails reboot.<br>
@@ -31,7 +30,7 @@ Although possible, the process for setting up a persistent configuration isn't c
 ---
 ### Install Signal
 
-* Make sure **Flatpak** has been installed. See [Flatpak](/guide/utils/flatpak.html).
+* Make sure **Flatpak** has been installed. See [Flatpak](../utils/flatpak.html).
 
 
 * Open a _Terminal_ window:  choose **Applications ▸ Utilities ▸ Terminal**

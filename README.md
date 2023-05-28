@@ -31,11 +31,3 @@ This can be used to store your personal data and to turn any computer into a sec
     * **Signal** messenger
 
 ---
-## References
-
-1. Tails - https://tails.boum.org/
-2. How to install and use VeraCrypt on Tails - https://github.com/sunknudsen/privacy-guides/tree/master/how-to-install-and-use-veracrypt-on-tails
-3. Tails Autostart - https://gitlab.com/tstone2077/tails-autostart 
-4. Tails Overlay - https://gitlab.com/tstone2077/tails-overlay
-5. Installing and Running Signal on Tails - https://bisco.org/notes/installing-and-running-signal-on-tails/
-6. Anleitung: Tails Linux mit Sparrow Wallet - https://forum.blocktrainer.de/t/anleitung-tails-linux-mit-sparrow-wallet/28775

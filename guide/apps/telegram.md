@@ -30,7 +30,7 @@ Although possible, the process for setting up a persistent configuration isn't c
 ---
 ### Install Telegram
 
-* Make sure **Flatpak** has been installed. See [Flatpak](../Futils/flatpak.html)).
+* Make sure **Flatpak** has been installed. See [Flatpak](../utils/flatpak.html)).
 
 
 * Open a _Terminal_ window:  choose **Applications ▸ Utilities ▸ Terminal**

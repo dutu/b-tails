@@ -21,9 +21,7 @@ VeraCrypt is a powerful disk encryption software that uses advanced encryption a
 It offers a user-friendly interface, and can create encrypted containers that can be mounted as virtual drives for easy access to your encrypted data.
 VeraCrypt is free, open-source, and available for multiple platforms.
 
-
-![veracrypt.png](/images/veracrypt.png)
-
+![veracrypt.png](../../images/veracrypt.png)
 
 > Tails comes preinstalled with software to unlock VeraCrypt encrypted partition. No additional software is needed.<br>
 > VeraCrypt application is needed only to create an encrypted partition for the first time, or to create new encrypted file containers.

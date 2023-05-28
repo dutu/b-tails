@@ -22,7 +22,7 @@ nav_order: 20
 ---
 ### Install Flatpak
 
-* Make sure **Tails Autostart** utility has been installed. See [Tails Autostart](/guide/utils/tails_autostart.html).
+* Make sure **Tails Autostart** utility has been installed. See [Tails Autostart](tails_autostart.html).
 
 
 #### Install Flatpak package
