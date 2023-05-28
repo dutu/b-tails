@@ -24,6 +24,13 @@ if [ ! -e "$rules_file" ]; then
   pkexec bash -c "install_dir=$install_dir; $(declare -f apply_udev_rules); apply_udev_rules"
 fi
 
+# Check if user's 'wallets' directory exists
+if [ ! -e "/home/amnesia/.electrum/wallets" ]; then
+  # If not, we need to set it up by running 'electrum-config-setup.sh' that we normally run at reboot
+  # (This case may occur if "Electrum Bitcoin Wallet" feature of Persistent Storage has just been disabled and system not yet rebooted, in which case `wallets` directory and `config.default` are not set)
+  $persistence_dir/dotfiles/.config/autostart/amnesia.d/electrum-config-setup.sh
+fi
+
 # Get the electrum AppImage file path
 electrum_AppImage=$(find ${install_dir}/*.AppImage | tail -n 1)
 # start electrum using '~/.electrum' directory and all other parameters passed to this script
