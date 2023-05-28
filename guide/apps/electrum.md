@@ -22,6 +22,8 @@ nav_order: 20
 
 Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the latest version. This guide can be used to add the latest Electrum version.
 
+![electrum.png](../../images/electrum.png)
+
 ---
 ### Install the latest version of Electrum
 
