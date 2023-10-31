@@ -41,7 +41,7 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
 * Open a _Terminal_ window:  choose **Applications ▸ Utilities ▸ Terminal**
 
 
-* Check latest VeraCrypt release:
+* Check latest Electrum release:
   ```shell
   $ VERSION=$(wget -qO- https://api.github.com/repos/spesmilo/electrum/tags | grep -Po '"name": "\K.*?(?=")' | grep -P '^\d+\.\d+\.\d+$' | sort -V | tail -n 1)
   $ echo $VERSION
@@ -156,7 +156,7 @@ Electrum Bitcoin Wallet comes pre-installed on Tails, however it is not the late
   > * `"auto_connect": false` -> stick with current server even if it is lagging. When changed to `true`, every time the Electrum client receives a block header from any server, it checks if the current server is lagging, and if so, it switches to one that has the best block. "lagging" is defined to be missing at least two blocks.
 
   {: .important }
-  > If you are upgrading Electrum, you may want to update the file checking existing `config` and `config.default` at `/live/persistence/TailsData_unlocked/electrum`: 
+  > If you are upgrading Electrum, you may want to update the file, by checking existing `config` and `config.default` at `/live/persistence/TailsData_unlocked/electrum`: 
   > ```shell
   > $ cat /live/persistence/TailsData_unlocked/electrum/config
   > $ cat /live/persistence/TailsData_unlocked/electrum/config.default
